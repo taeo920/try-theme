@@ -1,0 +1,49 @@
+/* =================================================================================
+Responsive Layouts
+================================================================================= */
+
+/* Smaller than standard 960 */
+@media only screen and (max-width: 959px) {}
+
+/* Tablet Portrait size to standard 960 */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	.wrapper { width: 728px; }
+	.col-main  { float: left; width: 500px; }
+	.col-left  { float: left; width: 208px; }
+	.col-right { float: right; width: 208px; }
+
+	/* 1 Column Layout */
+	.col1-layout .col-main { float: none; width: auto; }
+
+	/* 2 Columns Layout */
+	.col2-left-layout .col-main { float: right; width: 500px; }
+	.col2-right-layout .col-main { width: 500px; }
+
+	/* 3 Columns Layout */
+	.col3-layout .col-wrapper,
+	.col3-layout .col-main,
+	.col3-layout .col-left,
+	.col3-layout .col-right { float: none; width: auto; }
+}
+
+/* All Mobile Sizes (Just Phones, Not Tablets) */
+@media only screen and (max-width: 767px) {
+	.wrapper { width: 100%; }
+	.col-main, .col-left, .col-right, .col1-layout .col-main, .col2-left-layout .col-main, .col2-right-layout .col-main, .col3-layout .col-wrapper,	.col3-layout .col-main, .col3-layout .col-left, .col3-layout .col-right { float: none; width: auto; }
+}
+
+/* Mobile Landscape Size to Tablet Portrait */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+/* Mobile Portrait Size to Mobile Landscape Size */
+@media only screen and (max-width: 479px) {}
+
+/* Print */
+@media print {
+	* { background: #fff; color: #000; }
+	html { font: 100%/1.5 georgia, serif; }
+	.menu-main-container { display: none; }
+	.col-main { float: none; margin: 0; width: 100%; }
+	a {	color: #000000; }
+	a:link:after { content: " (" attr(href) ") "; }
+}

@@ -1,0 +1,137 @@
+/* =================================================================================
+Layout
+================================================================================= */
+
+.wrapper { margin: 0 auto; text-align: left; width: 960px; }
+.main {  }
+
+// Base Columns
+.col-main  { float: left; width: 720px; }
+.col-left  { float: left; width: 220px; }
+.col-right { float: right; width: 220px; }
+
+// 1 Column Layout
+.col1-layout .col-main { float: none; width: auto; }
+
+// 2 Columns Layout
+.col2-left-layout .col-main  { width: 720px; float: right; }
+.col2-right-layout .col-main { width: 720px; }
+
+// 3 Columns Layout
+.col3-layout .col-wrapper { width: 720px; float: left; }
+.col3-layout .col-main    { width: 500px; float: right; }
+.col3-layout .col-left    { width: 200px; }
+.col3-layout .col-right   { width: 220px; }
+
+// Two column Set
+.col2-set .col-1 	  { width: 49%; float: left; }
+.col2-set .col-2 	  { width: 49%; float: right; }
+.col2-set .col-narrow { width: 33%; }
+.col2-set .col-wide   { width: 65%; }
+
+// Three column Set
+.col3-set .col-1 { width: 32%; float: left; }
+.col3-set .col-2 { width: 32%; float: left; margin-left: 2%; }
+.col3-set .col-3 { width: 32%; float: right; }
+
+// Four column Set
+.col4-set .col-1 { width: 23.5%; float: left; }
+.col4-set .col-2 { width: 23.5%; float: left; margin: 0 2%; }
+.col4-set .col-3 { width: 23.5%; float: left; }
+.col4-set .col-4 { width: 23.5%; float: right; }
+
+
+/* =================================================================================
+Persistent Content (Header, Footer, Sidebar, etc.)
+================================================================================= */
+
+////////////////
+// Navigation //
+////////////////
+
+// Top Level Nav
+.menu-main-container { margin: 0 0 10px; }
+.menu-main-container ul { background: @light-grey; .clearfix(); z-index: 999; }
+.menu-main-container li { float: left; position: relative; }
+.menu-main-container li.current_page_item a,
+.menu-main-container li.current_page_ancestor a {  }
+.menu-main-container li a { background: @light-grey; display: block; padding: 10px; }
+
+// Sub Nav (overwrites top level)
+.menu-main-container ul ul { position: absolute; top: -9999em; left: -9999em; }
+.menu-main-container ul ul li { width: 200px; }
+.menu-main-container ul ul li a {  }
+
+// Hover States
+.menu-main-container li:hover > ul { top: auto; left: auto; }
+.menu-main-container ul ul li:hover > ul { top: 0; left: 100%; }
+
+////////////
+// Header //
+////////////
+
+.header {  }
+.header h1.logo { font-size: 0; line-height: 0; margin: 0; padding: 0; text-indent: -9999em; }
+.header a.logo { .ir( 384px, 67px, 'logo.png' ); margin: 10px 0; }
+
+////////////
+// Footer //
+////////////
+
+.footer {  }
+
+/////////////
+// Sidebar //
+/////////////
+
+.sidebar {  }
+.widget { margin: 0 0 10px; }
+.widget-content { background: @light-grey; padding: 10px; }
+.widget-title {  }
+
+/////////////////
+// Search Form //
+/////////////////
+
+.search-wrapper { width: 100%; }
+.search-form { .clearfix(); display: block; }
+.search-form label { display: none; }
+.search-form .search-box { border: 1px solid @light-grey; float: left; padding: 0 10px; .size(80%, 35px); }
+.search-form .search-submit { background: @blue; border: 0 none; color: #fff; float: right; .size(20%, 35px); }
+
+
+/* =================================================================================
+Content
+================================================================================= */
+
+///////////////////
+// All Templates //
+///////////////////
+
+.post-list li { margin: 0 0 20px; }
+.formatted ul,
+.formatted ol { list-style: disc outside; margin: 0 0 20px; padding: 0 0 0 40px; }
+.formatted ol { list-style: decimal outside; }
+.formatted li { padding: 5px 0; }
+.formatted h1,
+.formatted h2,
+.formatted h3 { margin: 0 0 10px; }
+.formatted p { line-height: 1.5em; margin: 0 0 20px; }
+
+//////////////////////////////////////////////////
+// Template Types (Archive, Single, Page, etc.) //
+//////////////////////////////////////////////////
+
+// Single
+.comment-form li { margin: 0 0 1em; }
+.comment-form textarea { min-height: 100px; width: 80%; }
+.comment-form input[type="text"] { margin: 0 1em 0 0; width: 60%; }
+.comment-form label { display: block; padding: 5px 0; }
+.comment-form .form-allowed-tags { clear: both; width: 80%; }
+.comment-form .form-allowed-tags code { display: block; }
+.comment-form-comment label { display: none; }
+
+////////////////////
+// Custom Content //
+////////////////////
+
