@@ -4,7 +4,7 @@
  * Front End CSS
  */
 function load_styles() {
-	wp_enqueue_style('main-style', get_bloginfo('template_url') . '/styles/main.css', array(), false, 'screen');
+	wp_enqueue_style('main-style', get_bloginfo('template_url') . '/dist/styles/main.min.css', array(), false, 'screen');
 }
 add_action('wp_enqueue_scripts', 'load_styles');
 
@@ -17,8 +17,10 @@ function load_scripts() {
 	wp_register_script('modernizr', get_bloginfo('template_url').'/scripts/vendor/modernizr.js');
 	wp_enqueue_script('modernizr');
 
+    wp_deregister_script( 'jquery' );
+
 	// AJAX jQuery with local fallback if necessary
-	$url = 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js';
+    $url = 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js';
 	$test_url = @fopen($url,'r');
 	wp_deregister_script( 'jquery' );
 	if($test_url !== false) {
@@ -31,7 +33,7 @@ function load_scripts() {
 	wp_enqueue_script('jquery');
 
 	// Theme Script
-	wp_enqueue_script('main', get_bloginfo('template_url').'/scripts/try.main.min.js', array(), false, true);
+	wp_enqueue_script('main', get_bloginfo('template_url').'/dist/scripts/main.js', array(), false, true);
 
 	// WordPress Scripts
 	if( is_singular() && get_option('thread_comments') ) wp_enqueue_script('comment-reply');

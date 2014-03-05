@@ -1,49 +1,42 @@
 /* =================================================================================
-Responsive Layouts
+Media Queries
 ================================================================================= */
 
-/* Smaller than standard 960 */
-@media only screen and (max-width: 959px) {}
+// Mobile Only: All
+@media screen and (max-width: 767px) {}
 
-/* Tablet Portrait size to standard 960 */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-	.wrapper { width: 728px; }
-	.col-main  { float: left; width: 500px; }
-	.col-left  { float: left; width: 208px; }
-	.col-right { float: right; width: 208px; }
+// Mobile Only: Portrait
+@media screen and (max-width: 479px) {}
 
-	/* 1 Column Layout */
-	.col1-layout .col-main { float: none; width: auto; }
+// Mobile Only: Landscape
+@media screen and (min-width: 480px) and (max-width: 767px) {}
 
-	/* 2 Columns Layout */
-	.col2-left-layout .col-main { float: right; width: 500px; }
-	.col2-right-layout .col-main { width: 500px; }
+// Tablet: Portrait
+@media screen and (min-width: 768px) and (max-width: 1023px) {}
 
-	/* 3 Columns Layout */
-	.col3-layout .col-wrapper,
-	.col3-layout .col-main,
-	.col3-layout .col-left,
-	.col3-layout .col-right { float: none; width: auto; }
-}
+// Desktop: All
+@media screen and (min-width: 1024px) {}
 
-/* All Mobile Sizes (Just Phones, Not Tablets) */
-@media only screen and (max-width: 767px) {
-	.wrapper { width: 100%; }
-	.col-main, .col-left, .col-right, .col1-layout .col-main, .col2-left-layout .col-main, .col2-right-layout .col-main, .col3-layout .col-wrapper,	.col3-layout .col-main, .col3-layout .col-left, .col3-layout .col-right { float: none; width: auto; }
-}
+// Desktop: Standard
+@media screen and (min-width: 1024px) and (max-width: 1279px) {}
 
-/* Mobile Landscape Size to Tablet Portrait */
-@media only screen and (min-width: 480px) and (max-width: 767px) {}
+// Desktop: Wide Format
+@media screen and (min-width: 1280px) {}
 
-/* Mobile Portrait Size to Mobile Landscape Size */
-@media only screen and (max-width: 479px) {}
-
-/* Print */
+// Print
 @media print {
-	* { background: #fff; color: #000; }
-	html { font: 100%/1.5 georgia, serif; }
-	.menu-main-container { display: none; }
-	.col-main { float: none; margin: 0; width: 100%; }
-	a {	color: #000000; }
-	a:link:after { content: " (" attr(href) ") "; }
-}
+	* { background: transparent !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; }
+	a, a:visited { text-decoration: underline; }
+	a[href]:after { content: " (" attr(href) ")"; }
+	abbr[title]:after { content: " (" attr(title) ")"; } // Don't show links for images, or javascript/internal links
+     .ir a:after,
+     a[href^="javascript:"]:after,
+     a[href^="#"]:after { content: ""; }
+     pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+     thead { display: table-header-group; /* h5bp.com/t */ }
+     tr, img { page-break-inside: avoid; }
+     img { max-width: 100% !important; }
+     @page { margin: 0.5cm; }
+     p, h2, h3 { orphans: 3; widows: 3; }
+     h2, h3 { page-break-after: avoid; }
+ }
