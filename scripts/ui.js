@@ -1,5 +1,5 @@
 var flexslider = require('./vendor/jquery.flexslider.js'),
-	colorbox = require('colorbox');
+	colorbox = require('./vendor/jquery.colorbox.js');
 
 var featuredSlider;
 
