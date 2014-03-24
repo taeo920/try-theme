@@ -1,182 +1,100 @@
 /* =================================================================================
-@Font-Face Embeds
+Include style modules
 ================================================================================= */
-@font-face {
-  font-family: 'BebasNeueRegular';
-  src: url('../../fonts/BebasNeue-webfont.eot');
-  src: url('../../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/BebasNeue-webfont.woff') format('woff'), url('../../fonts/BebasNeue-webfont.ttf') format('truetype'), url('../../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'OpenSansLight';
-  src: url('../../fonts/OpenSans-Light-webfont.eot');
-  src: url('../../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/OpenSans-Light-webfont.woff') format('woff'), url('../../fonts/OpenSans-Light-webfont.ttf') format('truetype'), url('../../fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'OpenSansRegular';
-  src: url('../../fonts/OpenSans-Regular-webfont.eot');
-  src: url('../../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/OpenSans-Regular-webfont.woff') format('woff'), url('../../fonts/OpenSans-Regular-webfont.ttf') format('truetype'), url('../../fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'OpenSansBold';
-  src: url('../../fonts/OpenSans-Bold-webfont.eot');
-  src: url('../../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/OpenSans-Bold-webfont.woff') format('woff'), url('../../fonts/OpenSans-Bold-webfont.ttf') format('truetype'), url('../../fonts/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-/* =================================================================================
-Colors
-================================================================================= */
-/* =================================================================================
-Mixins
-================================================================================= */
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.clearfix:after {
-  clear: both;
-}
-.hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-.input-block-level {
-  display: block;
-  width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 /* =================================================================================
 Cross Browser Reset
+http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
 ================================================================================= */
+html,
 body,
 div,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
+span,
+applet,
+object,
+iframe,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-pre,
-form,
-fieldset,
-input,
-textarea,
 p,
 blockquote,
-th,
-td {
-  padding: 0;
-  margin: 0;
-}
-body {
-  background: #fff;
-  color: #444444;
-  font: normal 16px/1em 'OpenSansRegular', Helvetica, sans-serif;
-  text-align: center;
-}
-img {
-  border: 0;
-  vertical-align: top;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'BebasNeueRegular', sans-serif;
-  font-weight: normal;
-  line-height: 1em;
-}
-h1 {
-  font-size: 48px;
-}
-h2 {
-  font-size: 36px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 20px;
-}
-h5 {
-  font-size: 18px;
-}
-h6 {
-  font-size: 16px;
-}
-p {
-  font-size: 16px;
-}
-a {
-  color: #3966bf;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-:focus {
-  outline: 0;
-}
-form {
-  display: inline;
-}
-fieldset {
-  border: 0;
-}
-legend {
-  display: none;
-}
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="url"],
-textarea {
-  background: #fff;
-  border: 1px solid #000;
-  padding: 8px 4px;
-  width: 100%;
-}
-label {
-  display: block;
-  padding: 0 0 5px;
-}
-table {
-  border: 0;
-  border-collapse: collapse;
-  border-spacing: 0;
-  empty-cells: show;
-  font-size: 100%;
-}
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
 caption,
+tbody,
+tfoot,
+thead,
+tr,
 th,
-td {
-  vertical-align: top;
-  text-align: left;
-  font-weight: normal;
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+main {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 article,
 aside,
@@ -191,29 +109,72 @@ nav,
 section {
   display: block;
 }
-address {
-  font-style: normal;
+body {
+  line-height: 1;
 }
-cite {
-  font-style: normal;
+ol,
+ul {
+  list-style: none;
 }
-q,
-blockquote {
+blockquote,
+q {
   quotes: none;
 }
+blockquote:before,
+blockquote:after,
 q:before,
 q:after {
   content: '';
+  content: none;
 }
-abbr,
-acronym {
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* =================================================================================
+Border-box box sizing for better layout styling
+================================================================================= */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.no-box-sizing * {
+  behavior: url(/wp-content/themes/try-theme/scripts/vendor/boxsizing.htc);
+}
+/* =================================================================================
+Forms
+================================================================================= */
+form {
+  display: inline;
+}
+legend {
+  display: none;
+}
+label {
+  display: block;
+}
+/* =================================================================================
+Tables
+================================================================================= */
+table {
   border: 0;
+  empty-cells: show;
+  font-size: 100%;
 }
-small {
-  font-size: 10px;
+caption,
+th,
+td {
+  vertical-align: top;
+  text-align: left;
+  font-weight: normal;
 }
-big {
-  font-size: 1.2em;
+/* =================================================================================
+Misc
+================================================================================= */
+ul,
+ol {
+  list-style: none;
 }
 sup,
 sub {
@@ -224,63 +185,7 @@ sub {
 sub {
   top: 0.4em;
 }
-/*sup           { font-size:1em; vertical-align:top; }/*/
-ul,
-ol {
-  list-style: none;
-}
-* {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.no-box-sizing * {
-  behavior: url(/wp-content/themes/try/scripts/boxsizing.htc);
-}
-.group,
-.header,
-.footer,
-.main,
-.col-main,
-.col2-set,
-.post,
-.menu-main-container,
-#menu-main {
-  *zoom: 1;
-}
-.group:before,
-.header:before,
-.footer:before,
-.main:before,
-.col-main:before,
-.col2-set:before,
-.post:before,
-.menu-main-container:before,
-#menu-main:before,
-.group:after,
-.header:after,
-.footer:after,
-.main:after,
-.col-main:after,
-.col2-set:after,
-.post:after,
-.menu-main-container:after,
-#menu-main:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.group:after,
-.header:after,
-.footer:after,
-.main:after,
-.col-main:after,
-.col2-set:after,
-.post:after,
-.menu-main-container:after,
-#menu-main:after {
-  clear: both;
-}
+/*sup         { font-size:1em; vertical-align:top; }/*/
 /* =================================================================================
 Tools
 ================================================================================= */
@@ -349,44 +254,10 @@ Tools
 .required {
   color: #cc0033;
 }
-/* =================================================================================
-Buttons
-================================================================================= */
-.btn {
-  background: #444;
-  border: 1px solid #000;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  font-size: 16px;
-  padding: 10px 15px;
-  text-transform: uppercase;
-  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
-  -webkit-transition: all 250ms linear;
-  transition: all 250ms linear;
-}
-.btn:hover {
-  background: #8cbc32;
-  border: 1px solid #fff;
-  text-decoration: none;
-  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
-}
-/* =================================================================================
-Lists
-================================================================================= */
-.inline-list {
-  *zoom: 1;
-}
 .inline-list:before,
 .inline-list:after {
+  content: " ";
   display: table;
-  content: "";
-  line-height: 0;
 }
 .inline-list:after {
   clear: both;
@@ -394,235 +265,46 @@ Lists
 .inline-list li {
   float: left;
 }
-.inline-list li a {
-  display: block;
+/* =================================================================================
+@Font-Face Embeds
+================================================================================= */
+@font-face {
+  font-family: 'BebasNeueRegular';
+  src: url('../../fonts/BebasNeue-webfont.eot');
+  src: url('../../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/BebasNeue-webfont.woff') format('woff'), url('../../fonts/BebasNeue-webfont.ttf') format('truetype'), url('../../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
-/* ===================================
-Flexslider
-=================================== */
-.flexslider-container {
-  zoom: 1;
-  position: relative;
+@font-face {
+  font-family: 'OpenSansLight';
+  src: url('../../fonts/OpenSans-Light-webfont.eot');
+  src: url('../../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/OpenSans-Light-webfont.woff') format('woff'), url('../../fonts/OpenSans-Light-webfont.ttf') format('truetype'), url('../../fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
-.flexslider {
-  margin: 0;
-  padding: 0;
+@font-face {
+  font-family: 'OpenSansRegular';
+  src: url('../../fonts/OpenSans-Regular-webfont.eot');
+  src: url('../../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/OpenSans-Regular-webfont.woff') format('woff'), url('../../fonts/OpenSans-Regular-webfont.ttf') format('truetype'), url('../../fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
-.flexslider .slides {
-  zoom: 1;
+@font-face {
+  font-family: 'OpenSansBold';
+  src: url('../../fonts/OpenSans-Bold-webfont.eot');
+  src: url('../../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('../../fonts/OpenSans-Bold-webfont.woff') format('woff'), url('../../fonts/OpenSans-Bold-webfont.ttf') format('truetype'), url('../../fonts/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
-.flexslider .slides > li {
-  display: none;
-  position: relative;
-  -webkit-backface-visibility: hidden;
-}
-/* Hide the slides before the JS is loaded. Avoids image jumping */
-.flexslider .slides img {
-  max-width: 100%;
-  display: block;
-}
-.flex-pauseplay span {
-  text-transform: capitalize;
-}
-/* Clearfix for the .slides element */
-.slides:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
-html[xmlns] .slides {
-  display: block;
-}
-* html .slides {
-  height: 1%;
-}
-/* No JavaScript Fallback */
-.no-js .slides > li:first-child {
-  display: block;
-}
-.flex-direction-nav {
-  height: 0;
-}
-/* ===================================
-Colorbox
-=================================== */
-/*
-Colorbox Core Style:
-The following CSS is consistent between example themes and should not be altered.
-*/
-#colorbox,
-#cboxOverlay,
-#cboxWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  overflow: hidden;
-}
-#cboxOverlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-}
-#cboxMiddleLeft,
-#cboxBottomLeft {
-  clear: left;
-}
-#cboxContent {
-  position: relative;
-}
-#cboxLoadedContent {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-#cboxTitle {
-  margin: 0;
-}
-#cboxLoadingOverlay,
-#cboxLoadingGraphic {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-#cboxPrevious,
-#cboxNext,
-#cboxClose,
-#cboxSlideshow {
-  cursor: pointer;
-}
-.cboxPhoto {
-  float: left;
-  margin: auto;
-  border: 0;
-  display: block;
-  max-width: none;
-  -ms-interpolation-mode: bicubic;
-}
-.cboxIframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: 0;
-}
-#colorbox,
-#cboxContent,
-#cboxLoadedContent {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-}
-/*
-User Style:
-Change the following styles to modify the appearance of Colorbox.  They are
-ordered & tabbed in a way that represents the nesting of the generated HTML.
-*/
-#cboxOverlay {
-  background: #000;
-}
-#colorbox {
-  outline: 0;
-}
-#cboxContent {
-  margin-top: 20px;
-  background: #000;
-}
-.cboxIframe {
-  background: #fff;
-}
-#cboxError {
-  padding: 50px;
-  border: 1px solid #ccc;
-}
-#cboxLoadedContent {
-  border: 5px solid #000;
-  background: #fff;
-}
-#cboxTitle {
-  position: absolute;
-  top: -20px;
-  left: 0;
-  color: #ccc;
-}
-#cboxCurrent {
-  position: absolute;
-  top: -20px;
-  right: 0px;
-  color: #ccc;
-}
-#cboxLoadingGraphic {
-  background: url(../images/loading.gif) no-repeat center center;
-}
-/* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
-#cboxPrevious,
-#cboxNext,
-#cboxSlideshow,
-#cboxClose {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-  width: auto;
-  background: none;
-}
-/* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
-#cboxPrevious:active,
-#cboxNext:active,
-#cboxSlideshow:active,
-#cboxClose:active {
-  outline: 0;
-}
-#cboxSlideshow {
-  position: absolute;
-  top: -20px;
-  right: 90px;
-  color: #fff;
-}
-#cboxPrevious {
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  margin-top: -32px;
-  background: url(../images/controls.png) no-repeat top left;
-  width: 28px;
-  height: 65px;
-  text-indent: -9999px;
-}
-#cboxPrevious:hover {
-  background-position: bottom left;
-}
-#cboxNext {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  margin-top: -32px;
-  background: url(../images/controls.png) no-repeat top right;
-  width: 28px;
-  height: 65px;
-  text-indent: -9999px;
-}
-#cboxNext:hover {
-  background-position: bottom right;
-}
-#cboxClose {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  display: block;
-  background: url(../images/controls.png) no-repeat top center;
-  width: 38px;
-  height: 19px;
-  text-indent: -9999px;
-}
-#cboxClose:hover {
-  background-position: bottom center;
-}
+/* =================================================================================
+Variables
+================================================================================= */
+/* =================================================================================
+Bootstrap Mixins
+================================================================================= */
+/* =================================================================================
+Theme Mixins
+================================================================================= */
 /* =================================================================================
 Layout
 ================================================================================= */
@@ -713,21 +395,354 @@ Layout
   float: right;
 }
 /* =================================================================================
-Persistent Content (Header, Footer, Sidebar, etc.)
+Flexslider
+================================================================================= */
+.flexslider-container {
+  zoom: 1;
+  position: relative;
+}
+.flexslider {
+  margin: 0;
+  padding: 0;
+}
+.flexslider .slides {
+  zoom: 1;
+}
+.flexslider .slides > li {
+  display: none;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+}
+/* Hide the slides before the JS is loaded. Avoids image jumping */
+.flexslider .slides img {
+  max-width: 100%;
+  display: block;
+}
+.flex-pauseplay span {
+  text-transform: capitalize;
+}
+/* Clearfix for the .slides element */
+.slides:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+html[xmlns] .slides {
+  display: block;
+}
+* html .slides {
+  height: 1%;
+}
+/* No JavaScript Fallback */
+.no-js .slides > li:first-child {
+  display: block;
+}
+/* =================================================================================
+Colorbox
+================================================================================= */
+#colorbox,
+#cboxOverlay,
+#cboxWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+#cboxOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+#cboxMiddleLeft,
+#cboxBottomLeft {
+  clear: left;
+}
+#cboxContent {
+  position: relative;
+}
+#cboxLoadedContent {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#cboxTitle {
+  margin: 0;
+}
+#cboxLoadingOverlay,
+#cboxLoadingGraphic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#cboxPrevious,
+#cboxNext,
+#cboxClose,
+#cboxSlideshow {
+  cursor: pointer;
+}
+.cboxPhoto {
+  float: left;
+  margin: auto;
+  border: 0;
+  display: block;
+  max-width: none;
+  -ms-interpolation-mode: bicubic;
+}
+.cboxIframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+#colorbox,
+#cboxContent,
+#cboxLoadedContent {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+#cboxOverlay {
+  background: #000;
+}
+#colorbox {
+  outline: 0;
+}
+#cboxContent {
+  margin-top: 20px;
+  background: #000;
+}
+.cboxIframe {
+  background: #fff;
+}
+#cboxError {
+  padding: 50px;
+  border: 1px solid #ccc;
+}
+#cboxLoadedContent {
+  border: 5px solid #000;
+  background: #fff;
+}
+#cboxTitle {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  color: #ccc;
+}
+#cboxCurrent {
+  position: absolute;
+  top: -20px;
+  right: 0px;
+  color: #ccc;
+}
+#cboxLoadingGraphic {
+  background: url(../images/loading.gif) no-repeat center center;
+}
+#cboxPrevious,
+#cboxNext,
+#cboxSlideshow,
+#cboxClose {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  width: auto;
+  background: none;
+}
+#cboxPrevious:active,
+#cboxNext:active,
+#cboxSlideshow:active,
+#cboxClose:active {
+  outline: 0;
+}
+#cboxSlideshow {
+  position: absolute;
+  top: -20px;
+  right: 90px;
+  color: #fff;
+}
+#cboxPrevious {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  margin-top: -32px;
+  background: url(../images/controls.png) no-repeat top left;
+  width: 28px;
+  height: 65px;
+  text-indent: -9999px;
+}
+#cboxPrevious:hover {
+  background-position: bottom left;
+}
+#cboxNext {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  margin-top: -32px;
+  background: url(../images/controls.png) no-repeat top right;
+  width: 28px;
+  height: 65px;
+  text-indent: -9999px;
+}
+#cboxNext:hover {
+  background-position: bottom right;
+}
+#cboxClose {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: block;
+  background: url(../images/controls.png) no-repeat top center;
+  width: 38px;
+  height: 19px;
+  text-indent: -9999px;
+}
+#cboxClose:hover {
+  background-position: bottom center;
+}
+/* =================================================================================
+~ Global
+================================================================================= */
+body {
+  background: #fff;
+  color: #333333;
+  font: normal 16px/1em "OpenSansRegular", Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+/* =================================================================================
+~ Typography
+================================================================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "BebasNeueRegular", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  line-height: 1em;
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 36px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 18px;
+}
+h6 {
+  font-size: 16px;
+}
+p {
+  font-size: 16px;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+:focus {
+  outline: 0;
+}
+/* =================================================================================
+~ Buttons
+================================================================================= */
+.btn {
+  background: #444;
+  border: 1px solid #000;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
+  -webkit-transition: all 250ms linear;
+  transition: all 250ms linear;
+}
+.btn:hover {
+  background: #8cbc32;
+  border: 1px solid #fff;
+  text-decoration: none;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+}
+/* =================================================================================
+~ User formatted
+================================================================================= */
+.formatted ul,
+.formatted ol {
+  list-style: disc outside;
+  margin: 0 0 20px;
+  padding: 0 0 0 40px;
+}
+.formatted ol {
+  list-style: decimal outside;
+}
+.formatted li {
+  padding: 5px 0;
+}
+.formatted h1,
+.formatted h2,
+.formatted h3 {
+  margin: 0 0 10px;
+}
+.formatted p {
+  line-height: 1.5em;
+  margin: 0 0 20px;
+}
+/* =================================================================================
+~ Header
+================================================================================= */
+.header h1.logo {
+  font-size: 0;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  text-indent: -9999em;
+}
+.header a.logo {
+  background: url("../images/logo.png") no-repeat;
+  display: block;
+  width: 384px;
+  height: 67px;
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+  margin: 10px 0;
+}
+/* =================================================================================
+~ Main menu
 ================================================================================= */
 .menu-main-container {
   margin: 0 0 10px;
 }
 .menu-main-container ul {
   background: #eeeeee;
-  *zoom: 1;
   z-index: 999;
 }
 .menu-main-container ul:before,
 .menu-main-container ul:after {
+  content: " ";
   display: table;
-  content: "";
-  line-height: 0;
 }
 .menu-main-container ul:after {
   clear: both;
@@ -757,44 +772,19 @@ Persistent Content (Header, Footer, Sidebar, etc.)
   top: 0;
   left: 100%;
 }
-.header h1.logo {
-  font-size: 0;
-  line-height: 0;
-  margin: 0;
-  padding: 0;
-  text-indent: -9999em;
-}
-.header a.logo {
-  background: url("../images/logo.png") no-repeat;
-  display: block;
-  width: 384px;
-  height: 67px;
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-  margin: 10px 0;
-}
-.widget {
-  margin: 0 0 10px;
-}
-.widget-content {
-  background: #eeeeee;
-  padding: 10px;
-}
+/* =================================================================================
+~ Search
+================================================================================= */
 .search-wrapper {
   width: 100%;
 }
 .search-form {
-  *zoom: 1;
   display: block;
 }
 .search-form:before,
 .search-form:after {
+  content: " ";
   display: table;
-  content: "";
-  line-height: 0;
 }
 .search-form:after {
   clear: both;
@@ -810,7 +800,7 @@ Persistent Content (Header, Footer, Sidebar, etc.)
   height: 35px;
 }
 .search-form .search-submit {
-  background: #3966bf;
+  background: #428bca;
   border: 0 none;
   color: #fff;
   float: right;
@@ -818,32 +808,21 @@ Persistent Content (Header, Footer, Sidebar, etc.)
   height: 35px;
 }
 /* =================================================================================
-Content
+~ Sidebar
 ================================================================================= */
-.post-list li {
-  margin: 0 0 20px;
-}
-.formatted ul,
-.formatted ol {
-  list-style: disc outside;
-  margin: 0 0 20px;
-  padding: 0 0 0 40px;
-}
-.formatted ol {
-  list-style: decimal outside;
-}
-.formatted li {
-  padding: 5px 0;
-}
-.formatted h1,
-.formatted h2,
-.formatted h3 {
+.widget {
   margin: 0 0 10px;
 }
-.formatted p {
-  line-height: 1.5em;
-  margin: 0 0 20px;
+.widget-content {
+  background: #eeeeee;
+  padding: 10px;
 }
+/* =================================================================================
+~ Footer
+================================================================================= */
+/* =================================================================================
+~ Comments
+================================================================================= */
 .comment-form li {
   margin: 0 0 1em;
 }
@@ -870,90 +849,61 @@ Content
   display: none;
 }
 /* =================================================================================
-Responsive Layouts
+~ Module name
 ================================================================================= */
-/* Smaller than standard 960 */
-/* Tablet Portrait size to standard 960 */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-  .wrapper {
-    width: 728px;
-  }
-  .col-main {
-    float: left;
-    width: 500px;
-  }
-  .col-left {
-    float: left;
-    width: 208px;
-  }
-  .col-right {
-    float: right;
-    width: 208px;
-  }
-  /* 1 Column Layout */
-  .col1-layout .col-main {
-    float: none;
-    width: auto;
-  }
-  /* 2 Columns Layout */
-  .col2-left-layout .col-main {
-    float: right;
-    width: 500px;
-  }
-  .col2-right-layout .col-main {
-    width: 500px;
-  }
-  /* 3 Columns Layout */
-  .col3-layout .col-wrapper,
-  .col3-layout .col-main,
-  .col3-layout .col-left,
-  .col3-layout .col-right {
-    float: none;
-    width: auto;
-  }
-}
-/* All Mobile Sizes (Just Phones, Not Tablets) */
-@media only screen and (max-width: 767px) {
-  .wrapper {
-    width: 100%;
-  }
-  .col-main,
-  .col-left,
-  .col-right,
-  .col1-layout .col-main,
-  .col2-left-layout .col-main,
-  .col2-right-layout .col-main,
-  .col3-layout .col-wrapper,
-  .col3-layout .col-main,
-  .col3-layout .col-left,
-  .col3-layout .col-right {
-    float: none;
-    width: auto;
-  }
-}
-/* Mobile Landscape Size to Tablet Portrait */
-/* Mobile Portrait Size to Mobile Landscape Size */
-/* Print */
+/* =================================================================================
+Media Queries
+================================================================================= */
 @media print {
   * {
-    background: #fff;
-    color: #000;
+    background: transparent !important;
+    color: #000 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
-  html {
-    font: 100%/1.5 georgia, serif;
+  a,
+  a:visited {
+    text-decoration: underline;
   }
-  .menu-main-container {
-    display: none;
+  a[href]:after {
+    content: " (" attr(href) ")";
   }
-  .col-main {
-    float: none;
-    margin: 0;
-    width: 100%;
+  abbr[title]:after {
+    content: " (" attr(title) ")";
   }
-  a {
-    color: #000000;
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
   }
-  a:link:after {
-    content: " (" attr(href) ") ";
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
   }
 }

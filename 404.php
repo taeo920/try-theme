@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="content" class="main col2-right-layout">
+<main id="content" class="main col1-layout">
 	<section id="primary" class="col-main" >
 		<h1>Page Not Found</h1>
 		<div class="formatted">
@@ -8,7 +8,6 @@
 		</div>
 		<?php get_search_form(); ?>
 	</section>
-</div>
+</main>
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

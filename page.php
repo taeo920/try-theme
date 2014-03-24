@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="content" class="main col2-right-layout">
+<main id="content" class="main col2-right-layout">
 	<section id="primary" class="col-main">
 
 	<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
@@ -16,6 +16,6 @@
 
 	<?php get_sidebar(); ?>
 
-</div>
+</main>
 
 <?php get_footer(); ?>

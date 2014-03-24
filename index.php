@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
-<div id="content" class="main col2-right-layout">
+<main id="content" class="main col2-right-layout">
 
-	<?php include('section-slider.php') ?>
+	<?php include('partials/section-slider.php') ?>
 
 	<section id="primary" class="col-main" >
 		<ol class="post-list">
@@ -32,6 +32,6 @@
 
 	<?php get_sidebar(); ?>
 
-</div>
+</main>
 
 <?php get_footer(); ?>

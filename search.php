@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="content" class="main col2-right-layout">
+<main id="content" class="main col2-right-layout">
 	<section id="primary" class="col-main" >
 
 		<?php
@@ -43,6 +43,6 @@
 
 	<?php get_sidebar(); ?>
 
-</div>
+</main>
 
 <?php get_footer(); ?>
