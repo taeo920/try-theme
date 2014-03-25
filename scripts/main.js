@@ -1,5 +1,8 @@
-// Require Modules
-var util = require('./util.js'),
+/**
+ * Require Modules
+ */
+var bootstrap = require('./vendor/bootstrap.js'),
+	util = require('./util.js'),
 	analytics = require('./analytics.js'),
 	social = require('./social.js'),
 	ui = require('./ui.js'),
@@ -17,9 +20,8 @@ Modernizr.load([{
  * When the DOM's ready, initialize the app
  */
 $(function () {
-	util.init();
-	analytics.init();
-	social.init();
-	ui.init();
-	responsive.init();
+	util.domReady();
+	social.domReady();
+	ui.domReady();
+	responsive.domReady();
 });

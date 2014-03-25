@@ -73,35 +73,28 @@ var twitterShare = function(el) {
 	return tweeturl;
 };
 
-////////////////////
-// Event Handlers //
-////////////////////
-
+/**
+ * Event Handlers
+ */
 $('.facebook-share').on('click', function(e) {
 	e.preventDefault();
-	fbShare(e.target);
+	fbShare(this);
 });
 
 $('.twitter-share').on('click', function(e) {
-	var href = twitterShare(e.target);
+	var href = twitterShare(this);
 	$(this).attr('href', href);
 	return true;
 });
-
-////////////////
-// Initialize //
-////////////////
-
-var init = function() {
-	fbInit();
-};
 
 ////////////////
 // Public API //
 ////////////////
 
 module.exports = {
-	init: init,
+	domReady: function() {
+		fbInit();
+	},
 	fbShare: fbShare,
 	twitterShare: twitterShare
 };

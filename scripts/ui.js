@@ -1,3 +1,6 @@
+/**
+ * Required Modules
+ */
 var flexslider = require('./vendor/jquery.flexslider.js'),
 	colorbox = require('./vendor/jquery.colorbox.js');
 
@@ -24,19 +27,14 @@ var sliderInit = function () {
 	});
 };
 
-////////////////
-// Initialize //
-////////////////
 
-var init = function () {
-	lightboxInit();
-	sliderInit();
-};
-
-////////////////
-// Public API //
-////////////////
-
+/**
+ * Data to export when module is included and referenced elsewhere
+ * @type {Object}
+ */
 module.exports = {
-	init: init
-}
+	domReady: function() {
+		lightboxInit();
+		sliderInit();
+	}
+};

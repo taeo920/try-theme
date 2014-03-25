@@ -1,9 +1,12 @@
+/**
+ * Required Modules
+ */
 var enquire = require('./vendor/enquire.js');
 
 /**
  * Monitors window size for breakpoints
  */
-var init = function () {
+var monitorBreakpoints = function () {
 	enquire.
 		register("screen and (max-width: 767px)", { // Mobile: All
 			deferSetup: true,
@@ -59,5 +62,5 @@ var init = function () {
  * Public API
  */
 module.exports = {
-	init: init
-}
+	domReady: monitorBreakpoints
+};

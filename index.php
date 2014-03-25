@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main id="content" class="main col2-right-layout">
+<main class="main">
 
 	<?php include('partials/section-slider.php') ?>
 
