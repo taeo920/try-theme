@@ -1,7 +1,54 @@
-/**
- * Add Google Analytics tracking code
+/*
+ *  Module: Analytics
  */
-(function(i, s, o, g, r, a, m) {
+
+var $ = require('jquery');
+
+var defaults = {
+	attrName: "track-event",
+	addGA: true,
+	gaid: "UA-NNNNNN-N"
+};
+
+/**
+ * Constructor
+ * @param {Object} options Optional properties to override defaults
+ */
+function Analytics(options) {
+	this.options = $.extend({}, defaults, options);
+	this.init();
+}
+
+/**
+ * Setup
+ */
+Analytics.prototype.init = function () {
+	var self = this;
+
+	// add GA script if not yet in DOM
+	if (self.options.addGA === true && !window.ga) {
+		self.addGA();
+	}
+
+	// apply event tracking to all elements with appropriate data-attribute
+	$('[data-' + self.options.attrName + ']').each(function () {
+		$(this).on('click', function() {
+			self.trackEvent(this);
+		});
+	});
+};
+
+/**
+ * Adds GA script to DOM and triggers pageview event
+ */
+Analytics.prototype.addGA = function(i, s, o, g, r, a, m) {
+	var self = this,
+		i = i || window,
+		s = s || document,
+		o = o || 'script',
+		g = g || '//www.google-analytics.com/analytics.js',
+		r = r || 'ga';
+
 	i['GoogleAnalyticsObject'] = r;
 	i[r] = i[r] || function() {
 		(i[r].q = i[r].q || []).push(arguments)
@@ -10,59 +57,55 @@
 	m = s.getElementsByTagName(o)[0];
 	a.async = 1;
 	a.src = g;
-	m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+	m.parentNode.insertBefore(a, m);
+
+	/**
+	 * Set up GA account and log pageview
+	 */
+	i.ga('create', self.options.gaid);
+	i.ga('send', 'pageview');
+};
 
 /**
- * Set up GA account and log pageview
+ * Triggers a GA custom event based on the triggering element's data
+ * @param  {Object} el The element that triggered the event
  */
-ga('create', 'UA-XXXX-Y');
-ga('send', 'pageview');
-
-/**
- * Logs an event to Google Analytics using the element's data attributes.
- * Adapted from Ben Plum's Scout plugin: https://github.com/benplum/Scout
- * @param  {object} e The event that fired the function
- * @return {bool}   true
- */
-var trackEvent = function (e) {
-	e.preventDefault();
-
-	var $el = $(this),
+Analytics.prototype.trackEvent = function(el) {
+	var self = this,
+		$el = $(el),
 		url = $el.attr("href"),
-		data = $el.data("track-event").split(",");
+		data = $el.data(self.options.attrName);
 
-	// Trim whitespace from data
-	for (var i in data) {
-		data[i] = $.trim(data[i]);
+	// If the data attribute isn't present exit
+	if (!data) {
+		return false;
 	}
 
-	// Push data: category, action, label, value
-	ga('send', 'event', data[0], data[1], (url || data[2]), data[3] );
+	// Turn the data string into an array
+	data = data.split(",");
 
-	// If active link, launch it!
+	// Trim whitespace from data
+	$.each(data, function(i) {
+		data[i] = this.trim(data[i]);
+	});
+
+	// Send data to GA: category, action, label (if link then href else another value), value (number)
+	window.ga('send', 'event', data[0], data[1], (url || data[2]), (data[3] || 1));
+
+	// If active link, delay so we can capture event then follow it
+	// http://support.google.com/analytics/bin/answer.py?hl=en&answer=1136920
 	if (url) {
-		// Delay based on Google's outbound link handler:
-		// http://support.google.com/analytics/bin/answer.py?hl=en&answer=1136920
 		setTimeout(function() {
-			// Check window target
-			if ($el.attr("target")) {
-				window.open(url, $el.attr("target"));
-			} else {
-				document.location.href = url;
-			}
+			return true;
 		}, 100);
 	}
 };
 
 /**
- * Event Handlers
- */
-$(document).on('click', '[data-track-event]', trackEvent);
-
-/**
  * Public API
  */
 module.exports = {
-	trackEvent: trackEvent
+	init: function () {
+		return new Analytics();
+	}
 };

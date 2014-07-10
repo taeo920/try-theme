@@ -1,27 +1,21 @@
-/**
- * Require Modules
+/*
+ *  Main entry point
  */
-var bootstrap = require('./vendor/bootstrap.js'),
-	util = require('./util.js'),
-	analytics = require('./analytics.js'),
-	social = require('./social.js'),
-	ui = require('./ui.js'),
-	responsive = require('./responsive.js');
+var $ = require('jquery');
+var bootstrap = require('bootstrap');
+var util = require('./util.js');
+var analytics = require('./analytics.js');
+var social = require('./social.js');
+var ui = require('./ui.js');
+var responsive = require('./responsive.js');
 
 /**
- * Conditionally load polyfills as needed
+ * Initialize the app on DOM ready
  */
-Modernizr.load([{
-	test: util.user.lte8,
-	yep: util.urls.theme + '/scripts/vendor/selectivizr.js'
-}]);
-
-/**
- * When the DOM's ready, initialize the app
- */
-$(function () {
+$(function() {
 	util.domReady();
-	social.domReady();
+	analytics.init();
+	social.init();
 	ui.domReady();
 	responsive.domReady();
 });

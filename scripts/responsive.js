@@ -1,7 +1,9 @@
-/**
- * Required Modules
+/*
+ *  Module: Responsive
+ *  Fire callbacks on breakpoint change
  */
-var enquire = require('./vendor/enquire.js');
+
+var enquire = require('enquire');
 
 /**
  * Monitors window size for breakpoints

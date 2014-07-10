@@ -4,7 +4,11 @@
  * Front End CSS
  */
 function load_styles() {
-	wp_enqueue_style('main-style', get_bloginfo('template_url') . '/dist/styles/main.min.css', array(), false, 'screen');
+	if ( defined('DEVELOPMENT') ) {
+		wp_enqueue_style('main-style', get_bloginfo('template_url') . '/dist/styles/app.css', array(), false, 'screen');
+	} else {
+		wp_enqueue_style('main-style', get_bloginfo('template_url') . '/dist/styles/app.min.css', array(), false, 'screen');
+	}
 }
 add_action('wp_enqueue_scripts', 'load_styles');
 
@@ -17,23 +21,14 @@ function load_scripts() {
 	wp_register_script('modernizr', get_bloginfo('template_url').'/scripts/vendor/modernizr.js');
 	wp_enqueue_script('modernizr');
 
-    wp_deregister_script( 'jquery' );
-
-	// AJAX jQuery with local fallback if necessary
-    $url = 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js';
-	$test_url = @fopen($url,'r');
-	wp_deregister_script( 'jquery' );
-	if($test_url !== false) {
-		// Load remote file via ajax
-        wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js', array(), '1.10.1', false);
-	} else {
-		// Load local file
-        wp_register_script('jquery', get_bloginfo('template_url').'/scripts/vendor/jquery.js', __FILE__, '1.10.1', false);
-	}
-	wp_enqueue_script('jquery');
-
 	// Theme Script
-	wp_enqueue_script('main', get_bloginfo('template_url').'/dist/scripts/main.js', array(), false, true);
+	if ( defined('DEVELOPMENT') ) {
+		//wp_enqueue_script('vendor', get_bloginfo('template_url').'/dist/scripts/vendor.js', array(), false, true);
+		wp_enqueue_script('main', get_bloginfo('template_url').'/dist/scripts/app.js', array(), false, true);
+	} else {
+		//wp_enqueue_script('vendor', get_bloginfo('template_url').'/dist/scripts/vendor.min.js', array(), false, true);
+		wp_enqueue_script('main', get_bloginfo('template_url').'/dist/scripts/app.min.js', array(), false, true);
+	}
 
 	// WordPress Scripts
 	if( is_singular() && get_option('thread_comments') ) wp_enqueue_script('comment-reply');
@@ -44,10 +39,7 @@ function load_scripts() {
 		'theme' => get_bloginfo('template_url'),
 		'ajax' => admin_url('admin-ajax.php')
 	));
-
-	wp_localize_script( 'main', 'info', array(
-		// IDs, etc.
-	));
+	wp_localize_script( 'main', 'info', array( /* IDs, etc. */ ));
 
 }
 add_action('wp_enqueue_scripts', 'load_scripts');

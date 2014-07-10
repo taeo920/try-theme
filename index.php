@@ -2,7 +2,7 @@
 
 <main class="main">
 
-	<?php include('partials/section-slider.php') ?>
+	<?php include('partials/carousel.php') ?>
 
 	<section id="primary" class="col-main" >
 		<ol class="post-list">
