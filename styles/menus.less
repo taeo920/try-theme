@@ -1,0 +1,21 @@
+/* =================================================================================
+~ Menus
+================================================================================= */
+
+.menu-main-container { margin: 0 0 10px;
+	// All levels
+	ul { background: @gray-lighter; .clearfix(); z-index: 999;
+		li { float: left; position: relative;
+			&:hover > ul { top: auto; left: auto; }
+			&.current_page_item a,
+			&.current_page_ancestor a {}
+			a { background: @gray-lighter; display: block; padding: 10px; }
+		}
+		// All child levels
+		ul { position: absolute; top: -9999em; left: -9999em;
+			li { width: 200px;
+				&:hover > ul { top: 0; left: 100%; }
+			}
+		}
+	}
+}
