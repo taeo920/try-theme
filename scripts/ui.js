@@ -15,7 +15,7 @@ var scrollTo = function (destination) {
 		return false;
 	}
 
-	if (destination === 'top') { // else if dest is top, go to top of window
+	if (destination === 'top') { // if dest is top, go to top of window
 		$viewport.animate({ scrollTop: 0 }, 500, 'swing');
 		return false;
 	}
@@ -25,16 +25,6 @@ var scrollTo = function (destination) {
 		$viewport.animate({ scrollTop: offset.top }, 500, 'swing');
 		return false;
 	}
-};
-
-/**
- * Helper function that toggles a class on the passed element
- * @param  {String} el The selector string for the element being toggled
- */
-var toggleClass = function(el, classname) {
-	var $el = $(el);
-	var classname = classname || 'active';
-	$el.hasClass(classname) ? $el.removeClass(classname) : $el.addClass(classname);
 };
 
 /**
@@ -66,7 +56,7 @@ var equalHeights = function(cols) {
  * @type {Object}
  */
 module.exports = {
-	domReady: function() {
+	init: function() {
 		// ScrollTo links
 		$('[data-scroll-to]').on('click', function(e) {
 			e.preventDefault();

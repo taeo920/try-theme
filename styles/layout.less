@@ -1,45 +1,5 @@
 /* =================================================================================
 Layout
 ================================================================================= */
-.column(@width, @float: none) { float: @float; width: @width; }
 
-.wrapper { margin: 0 auto; text-align: left; width: 100%; }
-
-.col3-set .col-1 { .column(32%, left); }
-.col3-set .col-2 { .column(32%, left); margin-left: 2%; }
-.col3-set .col-3 { .column(32%, right); }
-
-.col4-set .col-1 { .column(23.5%, left); }
-.col4-set .col-2 { .column(23.5%, left); margin: 0 2%; }
-.col4-set .col-3 { .column(23.5%, left); }
-.col4-set .col-4 { .column(23.5%, right); }
-
-// Mobile Only: All
-@media screen and (max-width: 767px) {}
-
-// Tablet: Portrait
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-	.wrapper { width: 750px; }
-	.col-main { .column(530px, left); }
-	.col-left { .column(200px, left); }
-	.col-right { .column(200px); }
-}
-
-// Desktop: All
-@media screen and (min-width: 1024px) {
-	.wrapper { width: 960px; }
-	.col-main { .column(720px, left); }
-	.col-left { .column(220px, left); }
-	.col-right { .column(220px); }
-}
-
-// Desktop: Standard
-@media screen and (min-width: 1024px) and (max-width: 1279px) {}
-
-// Desktop: Wide Format
-@media screen and (min-width: 1280px) {
-	.wrapper { width: 1170px; }
-	.col-main { .column(920px, left); }
-	.col-left { .column(230px, left); }
-	.col-right { .column(230px); }
-}
+.container { text-align: left; }

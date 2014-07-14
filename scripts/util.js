@@ -87,7 +87,7 @@ var placeholderPolyfill = function () {
  * Public API
  */
 module.exports = {
-	domReady: function() {
+	init: function() {
 		consolePolyfill();
 		placeholderPolyfill();
 	},

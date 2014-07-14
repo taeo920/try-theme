@@ -105,7 +105,7 @@ Analytics.prototype.trackEvent = function(el) {
  * Public API
  */
 module.exports = {
-	init: function () {
-		return new Analytics();
+	init: function (opts) {
+		return new Analytics(opts);
 	}
 };

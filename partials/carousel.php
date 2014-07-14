@@ -1,4 +1,4 @@
-<div class="owl-carousel">
+<div class="owl-carousel col-sm-12">
 	<div>
 		<figure>
 			<a href="#" class="colorbox"><img src="http://lorempixel.com/1170/300/" alt="placeholder" /></a>

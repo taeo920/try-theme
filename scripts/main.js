@@ -1,6 +1,7 @@
 /*
  *  Main entry point
  */
+
 var $ = require('jquery');
 var bootstrap = require('bootstrap');
 var util = require('./util.js');
@@ -15,11 +16,11 @@ var responsive = require('./responsive.js');
  * Initialize the app on DOM ready
  */
 $(function() {
-	util.domReady();
-	analytics.init();
-	social.init();
+	util.init();
+	ui.init();
+	analytics.init({ gaid: "UA-NNNNNN-N" });
+	social.init({ fbAppID: "" });
 	carousel.init();
 	lightbox.init();
-	ui.domReady();
-	responsive.domReady();
+	responsive.init();
 });

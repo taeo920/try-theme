@@ -10,51 +10,45 @@ var enquire = require('enquire');
  */
 var monitorBreakpoints = function () {
 	enquire.
-		register("screen and (max-width: 767px)", { // Mobile: All
-			deferSetup: true,
-			setup: function() {},
+		register("screen and (max-width: 767px)", { // X-Small
 			match: function() {
-				console.log('mobile: all');
+				console.log('<= 767px');
 			},
 			unmatch: function() {}
 		}).
-		register("screen and (max-width: 479px)", { // Mobile: Portrait
-			deferSetup: true,
-			setup: function() {},
+		register("screen and (min-width: 768px)", { // Small
 			match: function() {
-				console.log('mobile: portrait');
+				console.log('>= 768px');
 			},
 			unmatch: function() {}
 		}).
-		register("screen and (min-width: 480px) and (max-width: 767px)", { // Mobile: Landscape
-			deferSetup: true,
-			setup: function() {},
+		register("screen and (min-width: 992px)", { // Medium
 			match: function() {
-				console.log('mobile: landscape');
+				console.log('>= 992px');
 			},
 			unmatch: function() {}
 		}).
-		register("screen and (min-width: 768px) and (max-width: 1023px)", { // Tablet: Portrait
-			deferSetup: true,
-			setup: function() {},
+		register("screen and (min-width: 1170px)", { // Large
 			match: function() {
-				console.log('tablet: portrait');
+				console.log('>= 1170px');
 			},
 			unmatch: function() {}
 		}).
-		register("screen and (min-width: 1024px) and (max-width: 1279px)", { // Desktop: Standard
-			deferSetup: true,
-			setup: function() {},
+		register("screen and (max-width: 479px)", { // X-Small portrait only
 			match: function() {
-				console.log('desktop: 1024px');
+				console.log('<= 479px');
 			},
 			unmatch: function() {}
 		}).
-		register("screen and (min-width: 1280px)", { // Desktop: Wide format
-			deferSetup: true,
-			setup: function() {},
+		register("screen and (min-width: 768px) and (max-width: 991px)", { // Small only
 			match: function() {
-				console.log('wide format: 1280px');
+				console.log('768px <-> 991px');
+			},
+			unmatch: function() {}
+		}).
+		register("screen and (min-width: 992px) and (max-width: 1170px)", { // Medium only
+			match: function() {
+				console.log('992px <-> 1170px');
 			},
 			unmatch: function() {}
 		});
@@ -64,5 +58,5 @@ var monitorBreakpoints = function () {
  * Public API
  */
 module.exports = {
-	domReady: monitorBreakpoints
+	init: monitorBreakpoints
 };

@@ -1,14 +1,14 @@
 <?php if ( post_password_required() ) : ?>
 
 	<p class="nopassword">This post is password protected. Enter the password to view any comments.</p>
-	
+
 <?php return; endif;?>
 
 
 <?php if ( have_comments() ) : ?>
 	<h2>Comments</h2>
 	<ul class="comment-list">
-		<?php wp_list_comments("callback=comment_list"); ?>
+		<?php wp_list_comments(); ?>
 	</ul>
 
 <?php endif; /* end have_comments() */ ?>
@@ -19,13 +19,13 @@
 	<div id="respond" class="comment-respond">
 		<h2><?php comment_form_title( 'Leave a Comment', 'Leave a Reply to %s' ); ?></h2>
 		<p class="align-center"><?php cancel_comment_reply_link(); ?></p>
-		 
+
 		<?php if ( get_option('comment_registration') && !$user_ID ) : ?>
-			
+
 		<p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">logged in</a> to post a comment.</p>
-		
+
 		<?php else : ?>
-			 
+
 		<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="comment-form" class="comment-form">
 			<ul>
 				<?php if ( $user_ID ) : ?>
@@ -60,13 +60,13 @@
 			</ul>
 			<?php do_action('comment_form', $post->ID); ?>
 		</form>
-		 
+
 		<?php endif; /* If registration required and not logged in */ ?>
- 
+
 	</div> <!-- end #respond -->
-	
+
 <?php else : ?>
 
 	<p class="nocomments">Comments are closed.</p>
-	
+
 <?php endif; ?>

@@ -18,7 +18,7 @@ add_action('wp_enqueue_scripts', 'load_styles');
 function load_scripts() {
 	// Modernizr
 	wp_deregister_script('modernizr');
-	wp_register_script('modernizr', get_bloginfo('template_url').'/scripts/vendor/modernizr.js');
+	wp_register_script('modernizr', get_bloginfo('template_url').'/scripts/vendor/modernizr.min.js');
 	wp_enqueue_script('modernizr');
 
 	// Theme Script

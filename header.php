@@ -13,11 +13,17 @@
 	<meta http-equiv="cleartype" content="on">
 
 	<?php wp_head(); ?>
+
+	<!--[if lte IE 9 ]>
+		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/selectivizr.js"></script>
+		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/respond.js"></script>
+		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/mediamatch.js"></script>
+	<![endif]-->
 </head>
 
 <body <?php body_class(); ?>>
-	<div class="wrapper">
-		<header class="header">
+	<header class="header">
+		<div class="container">
 			<?php if(is_front_page()) : ?>
 
 				<h1 class="logo">
@@ -26,8 +32,9 @@
 
 			<?php else : ?>
 
-				<a class="logo" href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a>
+			<a class="logo" href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a>
 
 			<?php endif; ?>
 			<?php wp_nav_menu(array('menu' => 'Main', 'theme_location' => 'main', 'container' => 'nav')); ?>
-		</header>
+		</div>
+	</header>

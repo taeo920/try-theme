@@ -1,4 +1,4 @@
-<aside id="secondary" class="col-right sidebar">
+<aside id="secondary" class="col-sm-4 sidebar">
 	<ul class="widget-list">
 		<?php dynamic_sidebar("sidebar"); ?>
 	</ul>
