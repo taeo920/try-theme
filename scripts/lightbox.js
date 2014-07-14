@@ -16,7 +16,7 @@ var initLightbox = function() {
  * @type {Object}
  */
 module.exports = {
-	domReady: function() {
+	init: function() {
 		initLightbox();
 	}
 };

@@ -35,7 +35,7 @@ var initCarousel = function () {
  * @type {Object}
  */
 module.exports = {
-	domReady: function() {
+	init: function() {
 		initCarousel();
 	}
 };

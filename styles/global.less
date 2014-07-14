@@ -1,0 +1,106 @@
+/* =================================================================================
+~ Global
+================================================================================= */
+
+html { font-size: 62.5%; } // Don't change this
+body { background: #fff; color: @gray-dark; font-family: @font-family-base; .font-size(12); text-align: center; }
+img { display: block; }
+
+// Mobile Only: All
+@media screen and (max-width: 767px) {
+     img { max-width: 100%; height: auto; }
+}
+
+/* =================================================================================
+~ Typography
+================================================================================= */
+
+h1, h2, h3, h4, h5, h6 { color: @brand-primary; font-family: @font-family-base; font-weight: normal; line-height: 1em; }
+p         {}
+a         { color: @brand-primary; text-decoration: none; }
+a:visited {}
+a:hover   { text-decoration: underline; }
+a:active  {}
+:focus    { outline: 0; }
+
+/* =================================================================================
+~ Buttons
+================================================================================= */
+
+// override Bootstrap defaults
+.btn {
+     &:hover {}
+     &:active {}
+
+     &.btn-xs {}
+     &.btn-sm {}
+     &.btn-lg {}
+
+     &.btn-default {}
+     &.btn-primary {}
+     &.btn-success {}
+     &.btn-info {}
+     &.btn-warning {}
+     &.btn-danger {}
+     &.btn-link {}
+}
+
+/* =================================================================================
+~ User formatted
+================================================================================= */
+
+.formatted {
+     ul, ol { margin: 0 0 20px; padding: 0 0 0 20px;
+          ul, ol { margin: 0; }
+     }
+     ol { list-style: decimal outside; }
+     ul { list-style: disc outside; }
+     li { line-height: 1.75em; }
+
+     h1, h2, h3, h4, h5, h6 { margin: 0 0 10px; }
+     p { line-height: 1.5em; margin: 0 0 20px; }
+     strong { font-weight: bold; }
+}
+
+/* =================================================================================
+Media Queries
+================================================================================= */
+
+// X-Small (mobile portrait)
+@media screen and (max-width: 479px) {}
+
+// Small (mobile landscape)
+@media screen and (min-width: 480px) and (max-width: 767px) {}
+
+// Small (mobile)
+@media screen and (max-width: 767px) {}
+
+// Medium (tablet)
+@media screen and (min-width: 768px) and (max-width: 1023px) {}
+
+// Large (1024px to 1280px)
+@media screen and (min-width: 1024px) and (max-width: 1279px) {}
+
+// Large (1024px +)
+@media screen and (min-width: 1024px) {}
+
+// Large (1280px +)
+@media screen and (min-width: 1280px) {}
+
+// Print
+@media print {
+	* { background: transparent !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; }
+	a, a:visited { text-decoration: underline; }
+	a[href]:after { content: " (" attr(href) ")"; }
+	abbr[title]:after { content: " (" attr(title) ")"; } // Don't show links for images, or javascript/internal links
+     .ir a:after,
+     a[href^="javascript:"]:after,
+     a[href^="#"]:after { content: ""; }
+     pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+     thead { display: table-header-group; /* h5bp.com/t */ }
+     tr, img { page-break-inside: avoid; }
+     img { max-width: 100% !important; }
+     @page { margin: 0.5cm; }
+     p, h2, h3 { orphans: 3; widows: 3; }
+     h2, h3 { page-break-after: avoid; }
+ }
