@@ -1,45 +1,39 @@
-<?php get_header(); ?>
+<div class="row">
+	<section id="primary" class="col-sm-8" >
+		<?php
+			$tmp_search = new WP_Query('s=' . esc_html($_GET['s']) . '&show_posts=-1&posts_per_page=-1');
+			$count = $tmp_search->post_count;
+		?>
+		<h1 class="archive page-title"><?php echo $count; ?> Result<?php if($count != 1){ echo 's'; } ?> for '<?php echo esc_html($s, 1); ?>'</h1>
+		<ul>
+			<?php if(have_posts()) : while(have_posts()) : the_post();
+				$keys = explode( " ", $s );
+				$title 	= preg_replace( '/('.implode('|', $keys) .')/iu', '<strong class="highlight">\0</strong>', get_the_title() );
+				$excerpt = preg_replace( '/('.implode('|', $keys) .')/iu', '<strong class="highlight">\0</strong>', get_the_excerpt() );
+			?>
 
-<main class="main">
-	<div class="container">
-		<div class="row">
-			<section id="primary" class="col-sm-8" >
-				<?php
-					$tmp_search = new WP_Query('s=' . esc_html($_GET['s']) . '&show_posts=-1&posts_per_page=-1');
-					$count = $tmp_search->post_count;
-				?>
-				<h1 class="archive page-title"><?php echo $count; ?> Result<?php if($count != 1){ echo 's'; } ?> for '<?php echo esc_html($s, 1); ?>'</h1>
-				<ul>
-					<?php if(have_posts()) : while(have_posts()) : the_post();
-						$keys = explode( " ", $s );
-						$title 	= preg_replace( '/('.implode('|', $keys) .')/iu', '<strong class="highlight">\0</strong>', get_the_title() );
-						$excerpt = preg_replace( '/('.implode('|', $keys) .')/iu', '<strong class="highlight">\0</strong>', get_the_excerpt() );
-					?>
+				<li class="post" id="<?php the_ID(); ?>">
+					<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php echo $title; ?></a></h2>
+					<div class="formatted">
+						<?php echo $excerpt; ?> <a href="<?php the_permalink(); ?>">Read more</a>
+					</div>
+				</li>
 
-						<li class="post" id="<?php the_ID(); ?>">
-							<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php echo $title; ?></a></h2>
-							<div class="formatted">
-								<?php echo $excerpt; ?> <a href="<?php the_permalink(); ?>">Read more</a>
-							</div>
-						</li>
+			<?php endwhile; else : ?>
 
-					<?php endwhile; else : ?>
+				<li class="post">
+					<h2>Posts Not Found</h2>
+					<p>No posts were found that match your criteria.</p>
+				</li>
 
-						<li class="post">
-							<h2>Posts Not Found</h2>
-							<p>No posts were found that match your criteria.</p>
-						</li>
+			<?php endif; ?>
+		</ul>
 
-					<?php endif; ?>
-				</ul>
-				<div class="post-nav">
-					<div class="prev"><?php next_posts_link('&laquo; Older Entries') ?></div>
-					<div class="next"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
-				</div>
-			</section>
-			<?php get_sidebar(); ?>
+		<div class="post-nav">
+			<div class="prev"><?php next_posts_link('&laquo; Older Entries') ?></div>
+			<div class="next"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
 		</div>
-	</div>
-</main>
+	</section>
 
-<?php get_footer(); ?>
+	<?php try_get_sidebar(); ?>
+</div>

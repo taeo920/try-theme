@@ -1,23 +1,39 @@
 <?php
 
-function load_widgets() {
-	register_widget('custom_widget');
-}
-add_action('widgets_init', 'load_widgets');
+/**
+ * Register custom widget areas ( aka sidebars )
+ */
+register_sidebar( array(
+	'name' => 'Sidebar',
+	'id' => 'sidebar',
+	'description' => 'Sidebar',
+	'before_widget' => '<li class="widget %2$s"><div class="widget-content">',
+	'after_widget' => '</div></li>',
+	'before_title' => '<h4 class="widget-title">',
+	'after_title' => '</h4>'
+));
 
 /**
- * Custom Widget
+ * Load custom widgets
  */
-class custom_widget extends WP_Widget {
-	function custom_widget() {
+function try_load_widgets() {
+	// register_widget('try_custom_widget');
+}
+add_action('widgets_init', 'try_load_widgets');
+
+/**
+ * Custom Widget Template
+ */
+class try_custom_widget extends WP_Widget {
+	function try_custom_widget() {
 		$widget_ops = array('classname' => 'custom_widget', 'description' => 'Example Description');
 		$control_ops = array('width' => 400, 'height' => 450);
 		$this->WP_Widget('custom_widget', 'Custom Widget', $widget_ops, $control_ops);
 	}
 
 	/**
-	* Determines the front end display of the widget using args from the theme
-	*/
+	 * Determines the front end display of the widget using args from the theme
+	 */	
 	function widget($args, $instance) {
 		global $post;
 		extract($args);
@@ -30,8 +46,8 @@ class custom_widget extends WP_Widget {
 	}
 
 	/**
-	* Take user settings and update/save them
-	*/
+	 * Take user settings and update/save them
+	 */
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
@@ -39,8 +55,8 @@ class custom_widget extends WP_Widget {
 	}
 
 	/**
-	* Determines the back-end (cms) display used to update settings
-	*/
+	 * Determines the back-end (cms) display used to update settings
+	 */
 	function form($instance) {
 		$defaults = array('title' => '');
 		$instance = wp_parse_args((array) $instance, $defaults ); ?>
