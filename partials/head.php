@@ -15,7 +15,6 @@
 	<?php wp_head(); ?>
 
 	<!--[if lte IE 9 ]>
-		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/selectivizr.js"></script>
 		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/respond.js"></script>
 		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/mediamatch.js"></script>
 	<![endif]-->
