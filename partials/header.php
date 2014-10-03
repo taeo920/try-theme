@@ -15,5 +15,7 @@
 			'menu' => 'Header',
 			'menu_class' => 'header-menuList menuBar-list'
 		)); ?>
+
+		<?php get_search_form(true); ?>
 	</div>
 </header>

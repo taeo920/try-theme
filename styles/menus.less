@@ -3,6 +3,10 @@
 ================================================================================= */
 
 .menuBar {
+	ul {}
+	li {}
+	a {}
+
 	&.menuBar--tabs { margin: 0 -1px;
 		// All levels
 		ul { .clearfix(); }
@@ -22,6 +26,12 @@
 				}
 			}
 		}
+	}
+
+	&.menuBar--text {
+		ul { margin: 0 -5px; }
+		li { display: inline; }
+		a { margin: 0 5px; }
 	}
 }
 

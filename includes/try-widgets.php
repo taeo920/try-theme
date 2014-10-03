@@ -6,10 +6,11 @@
 register_sidebar( array(
 	'name' => 'Sidebar',
 	'id' => 'sidebar',
+	'class' => 'widgetFeed-widget',
 	'description' => 'Sidebar',
-	'before_widget' => '<li class="widget %2$s"><div class="widget-content">',
+	'before_widget' => '<li class="widgetFeed-widget %2$s"><div class="widgetFeed-content">',
 	'after_widget' => '</div></li>',
-	'before_title' => '<h4 class="widget-title">',
+	'before_title' => '<h4 class="widgetFeed-title">',
 	'after_title' => '</h4>'
 ));
 
@@ -33,7 +34,7 @@ class try_custom_widget extends WP_Widget {
 
 	/**
 	 * Determines the front end display of the widget using args from the theme
-	 */	
+	 */
 	function widget($args, $instance) {
 		global $post;
 		extract($args);

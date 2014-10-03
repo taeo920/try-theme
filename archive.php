@@ -1,5 +1,5 @@
 <div class="row">
-	<section id="primary" class="col-sm-8">
+	<section class="col-sm-8">
 		<?php if ( have_posts() ) : the_post(); ?>
 			<h1 class="page-title archive">
 				<?php if ( is_tag() ) : ?>

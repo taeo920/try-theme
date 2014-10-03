@@ -1,12 +1,9 @@
 <?php the_post(); ?>
 
-<div class="row">
-	<section id="primary" class="col-sm-8">
-		<article class="formatted">
-			<h1 class="page-title"><?php the_title(); ?></h1>
-			<?php the_content(); ?>
-		</article>
-	</section>
-
+<section class="article row">
+	<article class="userFormatted col-sm-8">
+		<h1 class="userFormatted-title"><?php the_title(); ?></h1>
+		<?php the_content(); ?>
+	</article>
 	<?php try_get_sidebar(); ?>
-</div>
+</section>

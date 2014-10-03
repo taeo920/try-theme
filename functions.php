@@ -23,7 +23,10 @@ function try_theme_setup() {
 	add_editor_style('/dist/styles/editor.css');
 
 	// Register commonly used menus
-	register_nav_menus( array('primary-navigation' => 'Primary Navigation',	'secondary-navigation' => 'Secondary Navigation') );
+	register_nav_menus(array(
+		'primary-navigation' => 'Primary Navigation',
+		'secondary-navigation' => 'Secondary Navigation'
+	));
 
 	// Disables the admin bar
 	// add_filter('show_admin_bar', '__return_false');

@@ -1,5 +1,5 @@
-<div class="row">
-	<section id="primary" class="col-sm-8" >
+<section id="primary" class="searchResults row" >
+	<div class="col-sm-8">
 		<?php
 			$tmp_search = new WP_Query('s=' . esc_html($_GET['s']) . '&show_posts=-1&posts_per_page=-1');
 			$count = $tmp_search->post_count;
@@ -33,7 +33,7 @@
 			<div class="prev"><?php next_posts_link('&laquo; Older Entries') ?></div>
 			<div class="next"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
 		</div>
-	</section>
+	</div>
+</section>
 
-	<?php try_get_sidebar(); ?>
-</div>
+<?php try_get_sidebar(); ?>
