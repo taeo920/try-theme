@@ -1,15 +1,8 @@
 /* =================================================================================
-~ Header
+~ Images
 ================================================================================= */
 
-.header {
-	.header-container { .clearfix(); position: relative; }
-
-     h1.header-logo { font-size: 0; line-height: 0; margin: 0; padding: 0; text-indent: -9999em; }
-     a.header-logo { .at2x('../images/logo.png', 384px, 67px); display: block; float: left; margin: 10px 0; .size(384px, 67px); }
-
-     .header-menu { position: absolute; bottom: 0; right: 15px; }
-}
+img { display: block; }
 
 // Small and larger
 @media screen and (min-width: @screen-sm-min) {}
@@ -21,7 +14,9 @@
 @media screen and (min-width: @screen-lg-min) {}
 
 // X-Small only
-@media screen and (max-width: @screen-xs-max) {}
+@media screen and (max-width: @screen-xs-max) {
+     img { max-width: 100%; height: auto; }
+}
 
 // Small only
 @media screen and (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {}

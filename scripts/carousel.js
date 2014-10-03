@@ -8,7 +8,7 @@ var owlCarousel = require('owlcarousel');
  * Initialize carousels
  */
 var initCarousel = function () {
-	$('.owl-carousel').owlCarousel({
+	$('.jsOwlCarousel').owlCarousel({
 		items: 1,
 		loop: true,
 		nav: true,
@@ -27,7 +27,7 @@ var initCarousel = function () {
 			}
 		},
 	});
-	var carousel = $('.owl-carousel').data('owlCarousel');
+	var carousel = $('.jsOwlCarousel').data('jsOwlCarousel');
 };
 
 /**

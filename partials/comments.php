@@ -4,14 +4,14 @@
 
 <?php if ( have_comments() ) : ?>
 	<h2>Comments</h2>
-	<ul class="comment-list">
+	<ul class="comments-list">
 		<?php wp_list_comments( array('callback' => 'try_comment_list') ); ?>
 	</ul>
 <?php endif;?>
 
 
 <?php if ( comments_open() ) : ?>
-	<div id="respond" class="comment-respond">
+	<div id="respond" class="comments-respond">
 		<h2><?php comment_form_title( 'Leave a Comment', 'Leave a Reply to %s' ); ?></h2>
 		<p class="align-center"><?php cancel_comment_reply_link(); ?></p>
 

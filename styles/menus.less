@@ -2,20 +2,43 @@
 ~ Menus
 ================================================================================= */
 
-.menu-main-container { margin: 0 0 10px;
-	// All levels
-	ul { background: @gray-lighter; .clearfix(); z-index: 999;
+.menuBar {
+	&.menuBar--tabs { margin: 0 -1px;
+		// All levels
+		ul { .clearfix(); }
 		li { float: left; position: relative;
 			&:hover > ul { top: auto; left: auto; }
 			&.current_page_item a,
-			&.current_page_ancestor a {}
+			&.current_page_ancestor a { background: @gray-light; }
 			a { background: @gray-lighter; display: block; padding: 10px; }
 		}
-		// All child levels
-		ul { position: absolute; top: -9999em; left: -9999em;
-			li { width: 200px;
-				&:hover > ul { top: 0; left: 100%; }
+		a { background: @gray-lighter; display: block; margin: 0 1px; padding: 5px 15px; }
+
+		// Secondary levels
+		ul {
+			ul { position: absolute; top: -9999em; left: -9999em;
+				li { width: 200px;
+					&:hover > ul { top: 0; left: 100%; }
+				}
 			}
 		}
 	}
 }
+
+// Small and larger
+@media screen and (min-width: @screen-sm-min) {}
+
+// Medium and larger
+@media screen and (min-width: @screen-md-min) {}
+
+// Large and larger
+@media screen and (min-width: @screen-lg-min) {}
+
+// X-Small only
+@media screen and (max-width: @screen-xs-max) {}
+
+// Small only
+@media screen and (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {}
+
+// Medium only
+@media screen and (min-width: @screen-md-min) and (max-width: @screen-md-max) {}

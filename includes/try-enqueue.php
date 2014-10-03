@@ -47,22 +47,22 @@ add_action('wp_enqueue_scripts', 'try_load_scripts');
  * Admin CSS
  */
 function try_load_admin_styles() {
-	wp_enqueue_style( 'admin', get_bloginfo('template_url') . '/styles/admin.css' );
+	wp_enqueue_style( 'admin', get_bloginfo('template_url') . '/dist/admin/admin.css' );
 }
-add_action('admin_enqueue_scripts', 'try_load_admin_styles');
+//add_action('admin_enqueue_scripts', 'try_load_admin_styles');
 
 /**
  * Admin JS
  */
 function try_load_admin_scripts() {
-	wp_enqueue_script( 'admin', get_bloginfo('template_url') . '/scripts/admin.js' );
+	wp_enqueue_script( 'admin', get_bloginfo('template_url') . '/dist/admin/admin.js' );
 }
-add_action('admin_enqueue_scripts', 'try_load_admin_scripts');
+//add_action('admin_enqueue_scripts', 'try_load_admin_scripts');
 
 /**
  * Login CSS
  */
 function try_load_login_styles() {
-	echo '<link rel="stylesheet" href="' . get_bloginfo('template_url') . '/styles/admin.css" type="text/css" />';
+	echo '<link rel="stylesheet" href="' . get_bloginfo('template_url') . '/dist/admin/admin.css" type="text/css" />';
 }
-add_action('login_head', 'try_load_login_styles');
+//add_action('login_head', 'try_load_login_styles');

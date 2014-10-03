@@ -1,19 +1,19 @@
-<div class="owl-carousel col-sm-12">
+<div class="jsOwlCarousel owlCarousel owlCarousel--hero col-xs-12">
 	<div>
 		<figure>
-			<a href="#" class="colorbox"><img src="http://lorempixel.com/1170/300/" alt="placeholder" /></a>
-			<figcaption>Captions and cupcakes. Winning combination.</figcaption>
+			<a href="#" class="colorbox"><img class="owlCarousel-image" src="http://lorempixel.com/1170/300/" alt="placeholder" /></a>
+			<figcaption class="owlCarousel-caption">Captions and cupcakes. Winning combination.</figcaption>
 		</figure>
 	</div>
 	<div>
 		<figure>
-			<a href="#"><img src="http://lorempixel.com/1170/300/" alt="placeholder" /></a>
-			<figcaption>This image is wrapped in a link!</figcaption>
+			<a href="#" class="colorbox"><img class="owlCarousel-image" src="http://lorempixel.com/1170/300/" alt="placeholder" /></a>
+			<figcaption class="owlCarousel-caption">This image is wrapped in a link!</figcaption>
 		</figure>
 	</div>
 	<div>
 		<figure>
-			<img src="http://lorempixel.com/1170/300/" alt="placeholder" />
+			<img class="owlCarousel-image" src="http://lorempixel.com/1170/300/" alt="placeholder" />
 		</figure>
 	</div>
 </div>

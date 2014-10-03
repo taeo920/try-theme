@@ -1,15 +1,10 @@
 /* =================================================================================
-~ Header
+Lightbox
 ================================================================================= */
 
-.header {
-	.header-container { .clearfix(); position: relative; }
+@import (inline) "vendor/colorbox.css";
 
-     h1.header-logo { font-size: 0; line-height: 0; margin: 0; padding: 0; text-indent: -9999em; }
-     a.header-logo { .at2x('../images/logo.png', 384px, 67px); display: block; float: left; margin: 10px 0; .size(384px, 67px); }
-
-     .header-menu { position: absolute; bottom: 0; right: 15px; }
-}
+// override defaults here...
 
 // Small and larger
 @media screen and (min-width: @screen-sm-min) {}

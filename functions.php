@@ -27,7 +27,7 @@ function try_theme_setup() {
 
 	// Disables the admin bar
 	// add_filter('show_admin_bar', '__return_false');
-	
+
 	// Cleanup Head
 	remove_action('wp_head', 'rsd_link');
 	remove_action('wp_head', 'wp_generator');
@@ -40,12 +40,12 @@ function try_theme_setup() {
 	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 
 	// Include custom post types, custom taxonomies, and general includes
-	$includes = array_merge( 
+	$includes = array_merge(
 		glob( get_theme_root() . '/' . get_template() . '/taxonomies/*.php'), // All taxonomies
 		glob( get_theme_root() . '/' . get_template() . '/types/*.php'), // All custom post types
 		glob( get_theme_root() . '/' . get_template() . '/includes/*.php') // All includes
 	);
-	
+
 	// Ignore files starting with an underscore
 	if( $includes ) {
 		foreach( $includes as $include ) {
