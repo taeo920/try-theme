@@ -8,14 +8,21 @@
 			<a class="header-logo" href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a>
 		<?php endif; ?>
 
-		<?php wp_nav_menu(array(
-			'theme_location' => 'header',
-			'container' => 'nav',
-			'container_class' => 'header-menu menuBar menuBar--tabs',
-			'menu' => 'Header',
-			'menu_class' => 'header-menuList menuBar-list'
-		)); ?>
+		<div class="header-menu mainMenu">
+			<div class="mainMenu-titleBar">
+				<button class="mainMenu-toggle">&times;</button>
+			</div>
+			<div class="searchForm searchForm--mainMenu">
+				<?php get_search_form(true); ?>
+			</div>
 
-		<?php get_search_form(true); ?>
+			<?php wp_nav_menu(array(
+				'theme_location' => 'header',
+				'container' => 'nav',
+				'container_class' => 'mainMenu-menu',
+				'menu' => 'Header',
+				'menu_class' => 'mainMenu-list'
+			)); ?>
+		</div>
 	</div>
 </header>

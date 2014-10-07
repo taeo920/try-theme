@@ -1,11 +1,18 @@
 /* =================================================================================
-~ Search
+~ Search Form
 ================================================================================= */
 
 .searchForm { .clearfix(); display: block;
 	label { display: none; }
-	.searchForm-box { border: 1px solid @gray-lighter; float: left; padding: 0 10px; .size(80%, 35px); }
-	.searchForm-submit { background: @brand-primary; border: 0 none; color: #fff; float: right; .size(20%, 35px); }
+	input { float: left; height: 35px; }
+	.searchForm-box { padding: 0 10px; }
+	.searchForm-submit { background: @brand-primary; border: 0 none; color: #fff; }
+}
+
+.searchForm--mainMenu { background: #fff;
+	.searchForm-form { position: relative; }
+	.searchForm-box { background: transparent; border: 0 none; padding: 0 110px 0 10px; width: 100%; }
+	.searchForm-submit { position: absolute; right: 0; top: 0; width: 100px; }
 }
 
 // Small and larger
