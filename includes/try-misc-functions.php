@@ -1,15 +1,37 @@
 <?php
 
 /**
- * Loads a PHP template file - useful for building AJAX content with echo = false
+ * Loads template part file
  *
- * @param (string) $file The name of the template file to load
- * @param (bool) $echo Use false to assign the contents of the template to a variable
+ * @param string $slug The slug name for the generic template or sub-directory
+ * @param string $name The name of the specialised template
+ * @param bool $echo Echo output immediately or buffered and returned
+ * @param array $param Array of additional params to include in scope
  */
-function try_load_template_file( $file, $echo = true ) {
-	if(!$echo) ob_start();
-	include( TEMPLATEPATH . '/' . $file . '.php' );
-	if(!$echo) return ob_get_clean();
+function try_get_template_part( $slug, $name, $echo = true, $params = array() ) {
+    global $posts, $post, $wp_did_header, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
+
+    do_action( "get_template_part_{$slug}", $slug, $name );
+
+    $templates = array();
+    if ( isset( $name ) ) {
+    	$templates[] = "{$slug}/{$name}.php";
+    	$templates[] = "{$slug}-{$name}.php";
+    }    	
+    $templates[] = "{$slug}.php";
+
+    $template_file = locate_template( $templates, false, false );
+
+    // Add query vars and params to scope
+    if ( is_array( $wp_query->query_vars ) ) {
+        extract( $wp_query->query_vars, EXTR_SKIP );
+    }
+    extract( $params, EXTR_SKIP );
+
+    // Buffer output and return if echo is false
+	if( !$echo ) ob_start();
+    require( $template_file );
+	if( !$echo ) return ob_get_clean();
 }
 
 /**
