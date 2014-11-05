@@ -13,10 +13,10 @@
 				<button class="mainMenu-toggle">&times;</button>
 			</div>
 			<div class="searchForm searchForm--mainMenu">
-				<?php get_search_form(true); ?>
+				<?php try_get_template_part('partials', 'searchform'); ?>
 			</div>
 
-			<?php wp_nav_menu(array(
+			<?php wp_nav_menu( array(
 				'theme_location' => 'header',
 				'container' => 'nav',
 				'container_class' => 'mainMenu-menu',

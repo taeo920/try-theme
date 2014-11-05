@@ -7,10 +7,12 @@
  */
 
 function try_get_template() {
+	global $post;
 	@include TRY_Theme_Wrapper::$main_template;
 }
 
 function try_get_sidebar() {
+	global $post;
 	@include new TRY_Theme_Wrapper('partials/sidebar.php');
 }
 
