@@ -34,7 +34,7 @@ if (isAndroid) {
  * Avoid `console` errors in browsers that lack a console.
  * @return {bool} [description]
  */
-var consolePolyfill = function () {
+function consolePolyfill() {
 	var method;
 	var noop = function () {};
 	var methods = [
@@ -61,7 +61,7 @@ var consolePolyfill = function () {
 /**
  * A polyfill to provide a native placeholder experience to browsers that don't support it
  */
-var placeholderPolyfill = function () {
+function placeholderPolyfill() {
 	if (!Modernizr.input.placeholder) {
 		$('input').each(function() {
 			var $el = $(this);
@@ -81,7 +81,18 @@ var placeholderPolyfill = function () {
 			}
 		});
 	}
-};
+}
+
+/**
+ * Convert dash separated values into camel case format
+ * @param  {string} input The dash separated string to convert
+ * @return {string}       The camel case formatted string
+ */
+function camelCase(input) {
+	return input.toLowerCase().replace(/-(.)/g, function(match, group1) {
+		return group1.toUpperCase();
+	});
+}
 
 /**
  * Public API
@@ -92,5 +103,6 @@ module.exports = {
 		placeholderPolyfill();
 	},
 	urls: urls,
-	user: user
+	user: user,
+	camelCase: camelCase
 };

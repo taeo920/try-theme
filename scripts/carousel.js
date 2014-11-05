@@ -7,28 +7,34 @@ var owlCarousel = require('owlcarousel');
 /**
  * Initialize carousels
  */
-var initCarousel = function () {
-	$('.jsOwlCarousel').owlCarousel({
+function initCarousel() {
+	$('.js-owlCarousel').owlCarousel({
 		items: 1,
-		loop: true,
-		nav: true,
-		dots: true,
+		itemsCustom: [
+			[0, 1]
+		],
+		rewindNav: true,
+		navigation: true,
+		navigationText: ["<", ">"], // use icon font to display arrows
+		pagination: true,
 		autoplay: true,
-		autoplayHoverPause: true,
-		autowidth: true,
-		responsiveBaseElement: window, //for IE8 set to main wrapper
-		responsiveClass: true,
-		responsive: {
-			0: {
-				nav: false
-			},
-			480: {
-				nav: true
-			}
-		},
+		stopOnHover: true,
+		responsiveBaseWidth: window //for IE8 set to main wrapper
 	});
-	var carousel = $('.jsOwlCarousel').data('jsOwlCarousel');
 };
+
+/**
+ * Destroy carousel
+ * @param  {string} selector The selector of the carousel to destroy
+ * @return {boolean}         True if carousel destroyed
+ */
+function destroyCarousel(selector) {
+	if ( $(selector).length ) {
+		$(selector).data('owlCarousel').destroy();
+		return true;
+	}
+	return false;
+}
 
 /**
  * Public API

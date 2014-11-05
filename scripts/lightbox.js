@@ -2,7 +2,7 @@
  *  Module: lightbox
  */
 
-var colorbox    = require('colorbox');
+var colorbox = require('colorbox');
 
 /**
  * Initialize lightboxes

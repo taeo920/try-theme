@@ -9,6 +9,8 @@ Theme Mixins
 	font-size: ~"@{remValue}rem";
 }
 
+.icon-font() { font-family: @font-family-icon !important; font-style: normal !important; font-weight: normal !important; font-variant: normal !important; text-transform: none !important; speak: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
 // List styling
 .bullets() { list-style: disc outside; margin: 1em 0; padding: 0 0 0 3em; }
 .numbers() { list-style: decimal outside; margin: 1em 0; padding: 0 0 0 3em; }
@@ -74,4 +76,10 @@ Theme Mixins
 
 	// Modifier class for 4:3 aspect ratio
 	&.embed-responsive-4by3 { padding-bottom: 75%; }
+}
+
+.desaturate(@percent: 100%) {
+	-webkit-filter: grayscale(@percent);
+	-moz-filter: grayscale(@percent);
+	filter: grayscale(@percent);
 }

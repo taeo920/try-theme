@@ -6,8 +6,8 @@ var $ = require('jquery');
 
 var defaults = {
 	attrName: "track-event",
-	addGA: true,
-	gaid: "UA-NNNNNN-N"
+	gaid: "UA-NNNNNN-N",
+	addGA: true
 };
 
 /**
@@ -16,27 +16,7 @@ var defaults = {
  */
 function Analytics(options) {
 	this.options = $.extend({}, defaults, options);
-	this.init();
 }
-
-/**
- * Setup
- */
-Analytics.prototype.init = function () {
-	var self = this;
-
-	// add GA script if not yet in DOM
-	if (self.options.addGA === true && !window.ga) {
-		self.addGA();
-	}
-
-	// apply event tracking to all elements with appropriate data-attribute
-	$('[data-' + self.options.attrName + ']').each(function () {
-		$(this).on('click', function() {
-			self.trackEvent(this);
-		});
-	});
-};
 
 /**
  * Adds GA script to DOM and triggers pageview event
@@ -67,14 +47,18 @@ Analytics.prototype.addGA = function(i, s, o, g, r, a, m) {
 };
 
 /**
- * Triggers a GA custom event based on the triggering element's data
- * @param  {Object} el The element that triggered the event
+ * Takes a DOM node and uses one of it's data-attributes to gather tracking data
+ * @param  {object} el DOM node to parse
+ * @return {object}    Object containing the necessary GA tracking data
  */
-Analytics.prototype.trackEvent = function(el) {
-	var self = this,
-		$el = $(el),
-		url = $el.attr("href"),
-		data = $el.data(self.options.attrName);
+Analytics.prototype.parseElementData = function(el) {
+	// grab data attributes from element
+	var self = this;
+	var $el = $(el);
+	var data = $el.data(self.options.attrName);
+	var trackingData = {};
+
+	trackingData.url = ( $el.attr("href") ) ? $el.attr("href") : null;
 
 	// If the data attribute isn't present exit
 	if (!data) {
@@ -82,19 +66,39 @@ Analytics.prototype.trackEvent = function(el) {
 	}
 
 	// Turn the data string into an array
-	data = data.split(",");
+	dataArray = data.split(",");
 
 	// Trim whitespace from data
-	$.each(data, function(i) {
-		data[i] = this.trim(data[i]);
+	$.each(dataArray, function(i) {
+		dataArray[i] = this.trim(dataArray[i]);
 	});
 
+	// return object with category, action, label, and value
+	trackingData = {
+		'category': dataArray[0],
+		'action': dataArray[1],
+		'label': dataArray[2],
+		'value': dataArray[3]
+	}
+
+	return trackingData;
+};
+
+/**
+ * Triggers a GA custom event based on the triggering element's data
+ * @param  {Object} el The element that triggered the event
+ */
+Analytics.prototype.trackEvent = function(data) {
+	if ( !data || !window.ga ) {
+		return;
+	}
+
 	// Send data to GA: category, action, label (if link then href else another value), value (number)
-	window.ga('send', 'event', data[0], data[1], (url || data[2]), (data[3] || 1));
+	window.ga('send', 'event', data.category, (data.action || 'click'), data.label, (data.value || 1));
 
 	// If active link, delay so we can capture event then follow it
 	// http://support.google.com/analytics/bin/answer.py?hl=en&answer=1136920
-	if (url) {
+	if (data.url) {
 		setTimeout(function() {
 			return true;
 		}, 100);
@@ -102,10 +106,43 @@ Analytics.prototype.trackEvent = function(el) {
 };
 
 /**
+ * Init
+ */
+Analytics.prototype.init = function () {
+	var self = this;
+	var scrolled = false;
+	var scrolledToBottom = false;
+
+	// add GA script if not yet in DOM
+	if (self.options.addGA === true && !window.ga) {
+		self.addGA();
+	}
+
+	// apply event tracking to all elements with appropriate data-attribute
+	$('[data-' + self.options.attrName + ']').each(function () {
+		$(this).on('click', function() {
+			var trackingData = self.parseElementData(this);
+			self.trackEvent(trackingData);
+		});
+	});
+
+	// track scrolling events
+	$(window).on('scroll', function () {
+		if (!scrolled) {
+			ga("send", "event", "scroll", "user scrolled window", window.location.href);
+			scrolled = true;
+		}
+
+		if ( ($(window).scrollTop() + $(window).height()) === $(document).height() ) {
+			if (!scrolledToBottom) {
+				ga("send", "event", "scroll", "user scrolled to end of page", window.location.href);
+				scrolledToBottom = true;
+			}
+		}
+	});
+};
+
+/**
  * Public API
  */
-module.exports = {
-	init: function (opts) {
-		return new Analytics(opts);
-	}
-};
+module.exports = Analytics;

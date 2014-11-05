@@ -13,3 +13,14 @@ function function_name() {
 }
 add_action( 'wp_ajax_nopriv_function_name', 'function_name' );
 add_action( 'wp_ajax_function_name', 'function_name' );
+
+/**
+ * Returns template for email share
+ */
+function get_form_email() {
+	global $post;
+	echo try_get_template_part( 'partials/form', 'email' );
+	exit;
+}
+add_action('wp_ajax_nopriv_get_form_email', 'get_form_email');
+add_action('wp_ajax_get_form_email', 'get_form_email');

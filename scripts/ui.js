@@ -7,7 +7,7 @@
  * Scrolls the window to the desired offset
  * @param  {Mixed} A number of pixels from the top of a page, or a string containing a dom selector
  */
-var scrollTo = function (destination) {
+function scrollTo(destination) {
 	var $viewport = $('html, body');
 
 	if (typeof destination === 'number') { // If provided a numerical offset, scroll there
@@ -32,7 +32,7 @@ var scrollTo = function (destination) {
  * @param  {Object} cols An object of the items to be equalized
  * @return {Number}      Height of the tallest element
  */
-var equalHeights = function(cols) {
+function equalHeights(cols) {
 	var largest = 0;
 	var $cols = cols;
 
@@ -51,17 +51,21 @@ var equalHeights = function(cols) {
 	return largest;
 };
 
+function init() {
+	// ScrollTo links
+	$('[data-scroll-to]').on('click', function(e) {
+		e.preventDefault();
+		var dest = $(this).data('scroll-to');
+		scrollTo(dest);
+	});
+}
+
 /**
  * Public API
  * @type {Object}
  */
 module.exports = {
-	init: function() {
-		// ScrollTo links
-		$('[data-scroll-to]').on('click', function(e) {
-			e.preventDefault();
-			var dest = $(this).data('scroll-to');
-			scrollTo(dest);
-		});
-	}
+	init: init,
+	equalHeights: equalHeights,
+	scrollTo: scrollTo
 };

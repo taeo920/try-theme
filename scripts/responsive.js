@@ -8,7 +8,7 @@ var enquire = require('enquire');
 /**
  * Monitors window size for breakpoints
  */
-var monitorBreakpoints = function () {
+function monitorBreakpoints() {
 	enquire.
 		register("screen and (max-width: 767px)", { // X-Small
 			match: function() {

@@ -2,12 +2,14 @@
  *  Module: social
  */
 
-var $ = require('jquery');
+var $        = require('jquery');
+var colorbox = require('colorbox');
+var util     = require('./util.js');
 
 var defaults = {
 	channelAttrName: "share-channel",
-	detailAttrName: "share-details",
-	fbAppID: ""
+	fbAppId: '',
+	mandrillApi: ''
 };
 
 /**
@@ -16,7 +18,52 @@ var defaults = {
  */
 function SocialShare(options) {
 	this.options = $.extend({}, defaults, options);
-	this.init();
+}
+
+/**
+ * Open lightbox with email share form
+ */
+function openEmailShare(el) {
+	var self = this;
+
+	// open lightbox with form
+	$.colorbox({
+		href: urls.ajax,
+		data: {
+			action: 'get_form_email'
+		},
+		onComplete: function() {
+			var $form = $('.form--email').find('form');
+
+			// on form submit create object of values from form
+			$form.on('submit', function(e) {
+				e.preventDefault();
+
+				// TODO: perform validation first
+
+				var opts = {};
+				var fields = $form.serializeArray();
+
+				$.each(fields, function(i, field) {
+					opts[field.name] = field.value;
+				});
+
+				opts.htmlBody = opts.textBody;
+
+				if ( el ) {
+					opts.subject = $(el).data('subject');
+				}
+
+				self.mandrillShare(opts).done(function (data) {
+					if ( data.status === 'error' ) {
+						console.log('Mandrill error: ', data.message);
+					} else {
+						$.colorbox.close();
+					}
+				});
+			});
+		}
+	});
 }
 
 /**
@@ -24,75 +71,24 @@ function SocialShare(options) {
  */
 SocialShare.prototype.init = function () {
 	var self = this;
-
 	// Grab all the elements with valid channel data attributes
 	$('[data-' + self.options.channelAttrName + ']').each(function() {
 		// on click trigger the appropriate share function
 		$(this).on('click', function () {
-			var channel = $(this).data(self.options.channelAttrName);
-			var details = $(this).data(self.options.detailAttrName);
+			var data = $(this).data();
+			var channel = data[ util.camelCase(self.options.channelAttrName) ];
 
-			var detailObj = self.getDetailObj(channel, details);
-			var url = self[channel + 'Share'](detailObj);
-
-			if (url) {
-				$(this).attr('href', url);
-				return true;
+			if ( channel === 'mandrill' ) {
+				openEmailShare.call(self, this);
+				return;
 			}
 
+			var url = self[channel + 'Share'](data);
+			// if url is a string open popup
+			var popup = (url) ? window.open(url, 'share', 'resizable=yes,scrollbars=yes,width=600,height=500') : false;
 			return false;
 		});
 	});
-}
-
-/**
- * Returns an object with the apropriate share data
- * @param  {String} channel Name of the social channel
- * @param  {String} details Comma separated text describing share info
- * @return {Object} share   channel specific content
- */
-SocialShare.prototype.getDetailObj = function (channel, details) {
-	var detailObj;
-	var data = details.split(',');
-
-	// Trim whitespace from data
-	$.each(data, function(i) {
-		data[i] = this.trim(data[i]);
-	});
-
-	switch (channel) {
-		case 'facebook':
-			detailObj = {
-				title: data[0],
-				description: data[1],
-				url: data[2],
-				image: data[3],
-				caption: data[4]
-			}
-			break;
-
-		case 'twitter':
-			detailObj = {
-				text: data[0],
-				url: data[1],
-				via: data[2],
-				hashtags: data[3]
-			}
-			break;
-
-		case 'pinterest':
-			detailObj = {
-				url: data[0],
-				media: data[1],
-				description: data[2]
-			}
-			break;
-
-		default:
-			break;
-	}
-
-	return detailObj;
 }
 
 /**
@@ -102,23 +98,32 @@ SocialShare.prototype.getDetailObj = function (channel, details) {
 SocialShare.prototype.facebookShare = function (details) {
 	var options = this.options;
 
+	function loadFbSdk(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {
+			return;
+		}
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	};
+
 	// check for fb sdk, if not present add to page
 	if (!window.fbAsyncInit) {
 		$('body').append('<div id="fb-root"></div>');
 
 		// Asynchronously load fb jssdk
-		var e = document.createElement('script');
-		e.async = true;
-		e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-		document.getElementById('fb-root').appendChild(e);
+		loadFbSdk(document, 'script', 'facebook-jssdk');
 
 		// Initialize Facebook app
 		window.fbAsyncInit = function() {
 			FB.init({
-				appId: options.fbAppID, // App ID from the App Dashboard
+				appId: options.fbAppId, // App ID from the App Dashboard
 				status: false, // check the login status upon init?
 				cookie: true, // set sessions cookies to allow your server to access the session?
-				xfbml: true // parse XFBML tags on this page?
+				xfbml: true, // parse XFBML tags on this page?
+				version: 'v2.1'
 			});
 			openDialog();
 		};
@@ -146,7 +151,11 @@ SocialShare.prototype.facebookShare = function (details) {
  * @return {String}
  */
 SocialShare.prototype.twitterShare = function (details) {
-	return 'http://twitter.com/share?url=' + encodeURI(details.url) + '&text=' + details.text + '&hashtags=' + details.hashtags;
+	var url = details.url || document.location.href;
+	var text = details.text.substring(0, 140) || "";
+	var hashtags = details.hashtags || "";
+	var via = details.via || "";
+	return 'http://twitter.com/share?url=' + encodeURI(url) + '&text=' + text + '&hashtags=' + hashtags + '&via=' + via;
 }
 
 /**
@@ -155,15 +164,78 @@ SocialShare.prototype.twitterShare = function (details) {
  */
 SocialShare.prototype.pinterestShare = function (details) {
 	var url = details.url || document.location.href;
-	return 'http://www.pinterest.com/pin/create/button/?url=' + encodeURI(url) + '&media=' + encodeURI(details.media) + '&description=' + details.description;;
+	var media = encodeURI(details.media) || "";
+	var description = details.description | "";
+	return 'http://www.pinterest.com/pin/create/button/?url=' + encodeURI(url) + '&media=' + media + '&description=' + description;;
+}
+
+/**
+ * Builds LinkedIn share url
+ * @return {String}
+ */
+SocialShare.prototype.linkedinShare = function (details) {
+	var url = details.url || document.location.href;
+	var title = details.title || "";
+	var summary = details.summary || "";
+	var source = details.source || "";
+	return 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURI(url) + '&title=' + title + '&summary=' + summary + '&source=' + source;
+}
+
+/**
+ * Builds Google+ share url
+ * @return {String}
+ */
+SocialShare.prototype.googleplusShare = function (details) {
+	var url = details.url || document.location.href;
+	return 'https://plus.google.com/share?url=' + encodeURI(url);
+}
+
+/**
+ * Handles email share via Mandrill
+ * @return {String}
+ */
+SocialShare.prototype.mandrillShare = function (data) {
+	var self = this;
+	var defaults = {
+		fromEmail: 'no-reply@' + window.location.hostname,
+		fromName: '',
+		toEmail: '',
+		toName: '',
+		subject: 'Read this article from: ' + urls.base,
+		htmlBody: '',
+		textBody: ''
+	}
+	var details = $.extend({}, defaults, data);
+
+	return $.ajax({
+		type: 'POST',
+		url: 'https://mandrillapp.com/api/1.0/messages/send.json',
+		data: {
+			'key': self.options.mandrillApi,
+			'message': {
+				'auto_text': true,
+				'auto_html': true,
+				'inline_css': true,
+				'headers': {
+					'Reply-to': details.fromEmail
+				},
+				'from_email': details.fromEmail,
+				'from_name': details.fromName,
+				'to': [{
+					'email': details.toEmail,
+					'name': details.toName,
+					'type': 'to'
+				}],
+				'subject': details.subject,
+				'html': window.location.href + '\n\n' + details.htmlBody,
+				'text': window.location.href + '\n\n' + details.textBody
+			}
+		}
+	});
 }
 
 /**
  * Public API
  * @type {Object}
  */
-module.exports = {
-	init: function () {
-		return new SocialShare();
-	}
-};
+module.exports = SocialShare;
