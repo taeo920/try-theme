@@ -6,9 +6,7 @@
 	?>
 
 	<main class="main">
-		<div class="container">
-			<?php try_get_template(); ?>
-		</div>
+		<?php try_get_template(); ?>
 	</main>
 
 	<?php

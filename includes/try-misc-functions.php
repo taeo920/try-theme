@@ -17,7 +17,7 @@ function try_get_template_part( $slug, $name, $echo = true, $params = array() ) 
     if ( isset( $name ) ) {
     	$templates[] = "{$slug}/{$name}.php";
     	$templates[] = "{$slug}-{$name}.php";
-    }    	
+    }
     $templates[] = "{$slug}.php";
 
     $template_file = locate_template( $templates, false, false );
@@ -191,4 +191,13 @@ function try_debug( $variable ) {
 		var_dump( $variable );
 	}
 	echo "</pre>";
+}
+
+/**
+ * Converts a string into Twitter share friendly format
+ * @param  string $string String to format
+ * @return string         Twitter sharable string
+ */
+function try_format_twitter_text($string) {
+  return htmlspecialchars(urlencode(html_entity_decode($string, ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8');
 }

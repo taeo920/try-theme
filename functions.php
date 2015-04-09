@@ -52,7 +52,8 @@ function try_theme_setup() {
 	// Ignore files starting with an underscore
 	if( $includes ) {
 		foreach( $includes as $include ) {
-			$filename = end( explode('/', $include ) );
+			$exploded_path = explode('/', $include );
+			$filename = end( $exploded_path );
 			if ( strpos( $filename, '_') !== 0 ) {
 				include_once( $include );
 			}

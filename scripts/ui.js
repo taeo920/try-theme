@@ -3,6 +3,9 @@
  * Helper functions for manipulating the DOM
  */
 
+require('jquery-colorbox');
+var $ = require('jquery');
+
 /**
  * Scrolls the window to the desired offset
  * @param  {Mixed} A number of pixels from the top of a page, or a string containing a dom selector
@@ -51,12 +54,17 @@ function equalHeights(cols) {
 	return largest;
 };
 
-function init() {
-	// ScrollTo links
-	$('[data-scroll-to]').on('click', function(e) {
-		e.preventDefault();
-		var dest = $(this).data('scroll-to');
-		scrollTo(dest);
+/**
+ * Opens a lightbox for the item that is passed in
+ */
+function openLightbox() {
+	$(this).colorbox({
+		iframe: true,
+		innerWidth: '80%',
+		innerHeight: '80%',
+		previous: '<',
+		next: '>',
+		close: 'x'
 	});
 }
 
@@ -65,7 +73,7 @@ function init() {
  * @type {Object}
  */
 module.exports = {
-	init: init,
 	equalHeights: equalHeights,
-	scrollTo: scrollTo
+	scrollTo: scrollTo,
+	openLightbox: openLightbox
 };

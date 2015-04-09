@@ -2,9 +2,9 @@
  *  Module: social
  */
 
-var $        = require('jquery');
-var colorbox = require('colorbox');
-var util     = require('./util.js');
+require('jquery-colorbox');
+var $    = require('jquery');
+var util = require('./util.js');
 
 var defaults = {
 	channelAttrName: "share-channel",

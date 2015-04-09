@@ -2,20 +2,22 @@
  *  Module: carousel
  */
 
-var owlCarousel = require('owlcarousel');
+require('./vendor/jquery.owl.carousel');
+var $ = require('jquery');
+var $carousel = $('.js-owlCarousel');
 
 /**
  * Initialize carousels
  */
-function initCarousel() {
-	$('.js-owlCarousel').owlCarousel({
+function init() {
+	$carousel.owlCarousel({
 		items: 1,
 		itemsCustom: [
 			[0, 1]
 		],
 		rewindNav: true,
 		navigation: true,
-		navigationText: ["<", ">"], // use icon font to display arrows
+		navigationText: ['<', '>'], // use icon font to display arrows
 		pagination: true,
 		autoplay: true,
 		stopOnHover: true,
@@ -28,9 +30,9 @@ function initCarousel() {
  * @param  {string} selector The selector of the carousel to destroy
  * @return {boolean}         True if carousel destroyed
  */
-function destroyCarousel(selector) {
-	if ( $(selector).length ) {
-		$(selector).data('owlCarousel').destroy();
+function destroy(selector) {
+	if ( $carousel.length ) {
+		$carousel.data('owlCarousel').destroy();
 		return true;
 	}
 	return false;
@@ -41,7 +43,6 @@ function destroyCarousel(selector) {
  * @type {Object}
  */
 module.exports = {
-	init: function() {
-		initCarousel();
-	}
+	init: init,
+	destroy: destroy
 };

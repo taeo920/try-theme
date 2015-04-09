@@ -3,7 +3,7 @@
  *  Fire callbacks on breakpoint change
  */
 
-var enquire = require('enquire');
+var enquire = require('./vendor/enquire');
 
 /**
  * Monitors window size for breakpoints
@@ -31,24 +31,6 @@ function monitorBreakpoints() {
 		register("screen and (min-width: 1170px)", { // Large
 			match: function() {
 				console.log('>= 1170px');
-			},
-			unmatch: function() {}
-		}).
-		register("screen and (max-width: 479px)", { // X-Small portrait only
-			match: function() {
-				console.log('<= 479px');
-			},
-			unmatch: function() {}
-		}).
-		register("screen and (min-width: 768px) and (max-width: 991px)", { // Small only
-			match: function() {
-				console.log('768px <-> 991px');
-			},
-			unmatch: function() {}
-		}).
-		register("screen and (min-width: 992px) and (max-width: 1170px)", { // Medium only
-			match: function() {
-				console.log('992px <-> 1170px');
 			},
 			unmatch: function() {}
 		});

@@ -3,21 +3,15 @@ App
 ================================================================================= */
 
 /**
- * Setup
+ * Vendor
  */
 
 @import (inline) "vendor/normalize.css";
-
-/**
- * Libraries
- */
-
-// Bootstrap - Include all with: @import "vendor/bootstrap/less/bootstrap.less";
-@import "vendor/bootstrap/less/variables.less";
-@import "vendor/bootstrap/less/mixins.less";
+// @import "vendor/bootstrap/less/bootstrap.less"; // Includes all boostrap styles
+@import (reference) "vendor/bootstrap/less/variables.less";
+@import (reference) "vendor/bootstrap/less/mixins.less";
 @import "vendor/bootstrap/less/scaffolding.less";
 @import "vendor/bootstrap/less/type.less";
-@import "vendor/bootstrap/less/code.less";
 @import "vendor/bootstrap/less/grid.less";
 @import "vendor/bootstrap/less/tables.less";
 @import "vendor/bootstrap/less/forms.less";
@@ -26,21 +20,26 @@ App
 @import "vendor/bootstrap/less/responsive-utilities.less";
 
 /**
+ * Theme dependencies
+ */
+
+@import (reference) "variables.less";
+@import (reference) "mixins.less";
+@import "fonts.less";
+@import "global.less";
+@import "layout.less";
+@import "utilities.less";
+
+/**
  * Theme modules
  */
 
-@import "fonts.less";
-@import (reference) "variables.less";
-@import (reference) "mixins.less";
-@import "global.less";
-@import "layout.less";
-@import "menus.less";
-@import "lightbox.less";
-@import "carousel.less";
-@import "post-feed.less";
-@import "widget-feed.less";
-@import "search-form.less";
-@import "user-formatted.less";
-@import "header.less";
-@import "footer.less";
-@import "comments.less";
+@import "modules/carousel.less";
+@import "modules/comments.less";
+@import "modules/components.less";
+@import "modules/composition.less";
+@import "modules/footer.less";
+@import "modules/header.less";
+@import "modules/menus.less";
+@import "modules/modules.less";
+@import "modules/search-form.less";
