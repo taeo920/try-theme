@@ -40,8 +40,6 @@ add_action('widgets_init', 'try_unregister_default_wp_widgets');
  * Hide admin pages that are not used
  */
 function try_remove_menu_pages() {
-	remove_menu_page( 'tools.php' );
-	remove_menu_page( 'plugins.php' );
 	remove_menu_page( 'edit-comments.php' );
 }
 add_action('admin_menu', 'try_remove_menu_pages');
