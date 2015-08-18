@@ -1,5 +1,5 @@
 {
-	"preset": "google",
-  "maximumLineLength": null,
-  "validateIndentation": null
+    "preset": "google",
+    "maximumLineLength": null,
+    "validateIndentation": null
 }
