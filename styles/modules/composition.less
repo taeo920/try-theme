@@ -4,16 +4,22 @@ Compositions
 
 .composition {}
 .composition-body {
-	ul, ol { margin: 0 0 20px; padding: 0 0 0 20px;
-		ul, ol { margin: 0; }
+	ul, ol { margin-bottom: 1.25em; padding-left: 1.25em;
+		ul, ol { margin-bottom: 0; }
 	}
 	ol { list-style: decimal outside; }
 	ul { list-style: disc outside; }
 	li { line-height: 1.5em; }
 
-	h1, h2, h3, h4, h5, h6 { margin: 0 0 20px; }
-	p { line-height: 1.5em; margin: 0 0 1.25em; }
+	h1, h2, h3, h4, h5, h6 { margin-bottom: 1.25em; }
+	p { line-height: 1.5em; margin-bottom: .25em; }
 	strong { font-weight: bold; }
+    
+    img, figure { max-width: 100%; }
+    
+    figure {
+		figcaption { margin-top: .5em; font-size: 1.3rem; font-style: italic; }
+	}
 }
 
 // Small and larger
