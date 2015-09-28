@@ -20,8 +20,29 @@ function try_plugins() {
 			'required'	=> true
 		),
 		array(
+			'name'		=> 'Admin Columns',
+			'slug'		=> 'admin-columns',
+			'required'	=> false
+		),
+		array(
+			'name'		=> 'AJAX Thumbnail Rebuild',
+			'slug'		=> 'ajax-thumbnail-rebuild',
+			'required'	=> false
+		),
+		array(
+			'name'		=> 'Gravity Forms',
+			'slug'		=> 'gravity-forms',
+            'source'	=> 'http://s3.amazonaws.com/gravityforms/releases/gravityforms_1.9.13.26.zip?AWSAccessKeyId=1603BBK66770VCSCJSG2&Expires=1443537480&Signature=hjxzybSejAgTvAxIrl1jWerihwA%3D',
+			'required'	=> false
+		),
+		array(
 			'name'		=> 'Simple Page Ordering',
 			'slug'		=> 'simple-page-ordering',
+			'required'	=> false
+		),
+		array(
+			'name'		=> 'WP Super Cache',
+			'slug'		=> 'wp-super-cache',
 			'required'	=> false
 		)
 	);
