@@ -36,6 +36,11 @@ function try_plugins() {
 			'required'	=> false
 		),
 		array(
+			'name'		=> 'Password Protected',
+			'slug'		=> 'password-protected',
+			'required'	=> false
+		),
+		array(
 			'name'		=> 'Simple Page Ordering',
 			'slug'		=> 'simple-page-ordering',
 			'required'	=> false
