@@ -26,7 +26,7 @@ add_action('widgets_init', 'try_load_widgets');
  * Custom Widget Template
  */
 class try_custom_widget extends WP_Widget {
-	function try_custom_widget() {
+	function __constructor() {
 		$widget_ops = array('classname' => 'custom_widget', 'description' => 'Example Description');
 		$control_ops = array('width' => 400, 'height' => 450);
 		$this->WP_Widget('custom_widget', 'Custom Widget', $widget_ops, $control_ops);
