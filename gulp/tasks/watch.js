@@ -1,5 +1,4 @@
 var gulp    = require('gulp');
-var webpack = require('gulp-webpack-build');
 var path    = require('path');
 var paths   = require('../config').paths;
 
@@ -9,6 +8,12 @@ gulp.task('watch', ['watchify'], function() {
 		paths.styles + '/**/*.less',
 		'!' + paths.styles + '/admin/**'
 	], ['styles']);
+
+	// Watch theme .js files
+	gulp.watch([
+		paths.scripts + '/**/*.js',
+		'!' + paths.scripts + '/admin/**'
+	], ['browserify']);
 
 	// Watch editor.less
 	gulp.watch(paths.styles + '/admin/editor.less', ['editorStyles']);
