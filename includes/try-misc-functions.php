@@ -64,15 +64,65 @@ function try_truncate( $string, $length, $append = '&hellip;' ) {
 }
 
 /**
+ * Retrieves the url of an image uploaded via an ACF image field
+ * TODO: Add support for nested fields and return types other than array
+ *
+ * @param (string) $name The name of the ACF field - assume default return of image object is used
+ * @param (string) $size The size of the image to be retrieved
+ * @return (string) The image url ( defaults to original size )
+ */
+function try_get_acf_image_src( $name, $size = 'thumbnail' ) {
+	// Return false if ACF is not active
+	if( !function_exists( 'get_field' ) )
+		return false;
+
+	// Assume default of image object is used
+	$image_array = get_field( $name );
+	
+	// Return false if field is empty or type other than object is being used
+	if( !$image_array || !is_array( $image_array ) )
+		return false;
+
+	if( array_key_exists( $size, $image_array['sizes'] ) ) {
+		$image_url = $image_array['sizes'][$size];
+	} else {
+		$image_url = $image_array['url'];
+	}
+
+	return $image_url;
+}
+
+/**
+ * Echos the url of an image uploaded via an ACF image field
+ *
+ * @param (string) $name The name of the ACF field - assume default return of image object is used
+ * @param (string) $size The size of the image to be retrieved
+ * @return (string) The image url ( defaults to original size )
+ */
+function try_the_acf_image_src( $name, $size = 'thumbnail' ) {
+	echo try_get_acf_image_src( $name, $size );
+}
+
+/**
  * Retrieves the url of the post thumbnail
  *
  * @param (string) $size The size of the thumbnail to be retrieved
  * @return (string) The post thumbnail url
  */
-function try_get_the_post_thumbnail_src( $size = 'thumbnail' ) {
+function try_get_post_thumbnail_src( $size = 'thumbnail' ) {
 	global $post;
 	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $size );
 	return $image[0];
+}
+
+/**
+ * Echos the url of the post thumbnail
+ *
+ * @param (string) $size The size of the thumbnail to be retrieved
+ * @return (string) The post thumbnail url
+ */
+function try_the_post_thumbnail_src( $size = 'thumbnail' ) {
+	echo try_get_post_thumbnail_src( $size );
 }
 
 /**
@@ -100,21 +150,89 @@ function try_get_post_images_src( $size = 'thumbnail' ) {
 }
 
 /**
- * Parses a string for a YouTube video ID
+ * Determines if url is a valid YouTube URL
  *
- * @param string $string Valid YouTube video URL or ID
+ * @param string $url Valid YouTube video URL
+ * @return bool
+ */
+function try_is_youtube_url( $url ) {
+	return ( preg_match('/youtu\.be/i', $url) || preg_match('/youtube\.com\/watch/i', $url) );
+}
+
+/**
+ * Determines if url is a valid Vimeo URL
+ *
+ * @param string $url Valid Vimeo video URL
+ * @return bool
+ */
+function try_is_vimeo_url( $url ) {
+	return ( preg_match('/vimeo\.com/i', $url) );
+}
+
+/**
+ * Parses a url for a YouTube video ID
+ *
+ * @param string $url Valid YouTube video URL
  * @return string YouTube video ID
  */
-function try_get_youtube_video_id( $string ) {
-	if( !parse_url( $string, PHP_URL_HOST ) ) return $string;
-	if ( strpos( $string, 'youtu.be/') === false && strpos( $string, '/embed/') === false ) {
-	    parse_str( parse_url( $string, PHP_URL_QUERY ), $query );
-	    $id = $query['v'];
-	} else {
-	    $id = basename( parse_url( $string, PHP_URL_PATH ) );
-	}
+function try_get_youtube_video_id( $url ) {
+	if( !try_is_youtube_url( $url ) )
+		return false;
 
-	return $id;
+	$pattern = '/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/';
+	preg_match( $pattern, $url, $matches );
+	
+	if ( count($matches) && strlen( $matches[7] ) == 11 ) {
+		return $matches[7];
+	}
+}
+
+/**
+ * Parses a url for a Vimeo video ID
+ *
+ * @param string $url Valid Vimeo video URL
+ * @return string Vimeo video ID
+ */
+function try_get_vimeo_video_id( $url ) {
+	if( !try_is_vimeo_url( $url ) )
+		return false;
+
+	$pattern = '/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/';
+	preg_match( $pattern, $url, $matches );
+	
+	if ( count($matches) ) {
+		return $matches[5];
+	}
+}
+
+/**
+ * Accepts a YouTube video ID and returns a shortened link
+ *
+ * @param int $id Valid YouTube video ID
+ * @return string Short YouTube video link
+ */
+function try_youtube_short_link( $id ) {
+	return 'https://youtu.be/' . $id;
+}
+
+/**
+ * Accepts a YouTube video ID and returns an link
+ *
+ * @param int $id Valid YouTube video ID
+ * @return string YouTube video embed link
+ */
+function try_youtube_embed_link( $id ) {
+	return 'https://www.youtube.com/embed/' . $id . '?rel=0&autoplay=1';
+}
+
+/**
+ * Accepts a Vimeo video ID and returns an embed link
+ *
+ * @param int $id Valid Vimeo video ID
+ * @return string Vimeo video embed link
+ */
+function try_vimeo_embed_link( $id ) {
+	return 'https://player.vimeo.com/video/' . $id . '?autoplay=1';
 }
 
 /**
@@ -148,20 +266,6 @@ function try_youtube_embed( $id, $iframe_args = array(), $youtube_args = array()
 
 	// iFrame embed
 	printf('<iframe type="text/html" class="%s" %s src="https://www.youtube.com/embed/%s?%s" frameborder="0"></iframe>', $class, $dimensions, $id, $youtube_args );
-}
-
-/**
- * Accepts a YouTube video ID and returns a shortened link
- *
- * @param int $id Valid YouTube video ID
- * @return string Short YouTube video link
- */
-function try_youtube_link( $id, $embeded = false ) {
-	if ( $embeded == true ) {
-		return 'https://www.youtube.com/embed/' . $id . '?rel=0&autoplay=1';
-	} else {
-		return 'https://youtu.be/' . $id;
-	}
 }
 
 /**
