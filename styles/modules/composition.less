@@ -2,23 +2,34 @@
 Compositions
 ================================================================================= */
 
-.composition {}
-.composition-body {
-	ul, ol { margin-bottom: 1.25em; padding-left: 1.25em;
+.composition {
+	a { color: @gray-dark; text-decoration: underline; } 
+
+	ul, ol { margin-bottom: 1.5rem; padding-left: 1.8rem; overflow: hidden;
 		ul, ol { margin-bottom: 0; }
 	}
 	ol { list-style: decimal outside; }
 	ul { list-style: disc outside; }
-	li { line-height: 1.5em; }
+	li { line-height: 1.8rem; }
 
-	h1, h2, h3, h4, h5, h6 { margin-bottom: 1.25em; }
-	p { line-height: 1.5em; margin-bottom: .25em; }
+	h1, h2, h3, h4, h5, h6 { font-weight: bold; margin-bottom: 1.5rem; }
+	h1 { .font-size( 32 ); }
+	h2 { .font-size( 24 ); }
+	h3 { .font-size( 20 ); }
+	h4 { .font-size( 18 ); }
+	h5 { .font-size( 16 ); }
+	h5 { .font-size( 14 ); }
+	h6 { .font-size( 12 ); }
+
+	p { line-height: 1.8rem; margin-bottom: 1.5rem; }
+	p:last-child { margin-bottom: 0; }
 	strong { font-weight: bold; }
     
     img, figure { max-width: 100%; }
+    img { height: auto; }
     
     figure {
-		figcaption { margin-top: .5em; font-size: 1.3rem; font-style: italic; }
+		figcaption { margin-top: .5rem; font-size: 1.3rem; font-style: italic; }
 	}
 }
 

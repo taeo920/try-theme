@@ -60,6 +60,7 @@ Theme Mixins
 
 // Image replacement
 .after() { .hide-text(); content: ''; display: block; position: absolute; };
+.sprite( @xpos, @ypos, @width, @height ) { background-image: url(../images/sprite.png); background-repeat: no-repeat; background-position: @xpos @ypos; content: ''; .hide-text(); .size(@width, @height); }
 .sprite-icon( @xpos, @ypos, @width, @height ) { background: url(../images/sprite.png) no-repeat @xpos @ypos; content: ''; display: block; margin: -(@height / 2) 0 0; position: absolute; top: 50%; .size(@width, @height); }
 .sprite-text( @xpos, @ypos, @width, @height ) { background: url(../images/sprite.png) no-repeat @xpos @ypos; content: ''; display: inline-block; .size(@width, @height); .ie7-inline-block(); .hide-text(); }
 .ir( @width, @height, @filename ) { background: url("../images/@{filename}") no-repeat; display: block; .size(@width, @height); .hide-text(); }
