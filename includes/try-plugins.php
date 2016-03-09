@@ -25,8 +25,8 @@ function try_plugins() {
 			'required'	=> false
 		),
 		array(
-			'name'		=> 'AJAX Thumbnail Rebuild',
-			'slug'		=> 'ajax-thumbnail-rebuild',
+			'name'		=> 'Regenerate Thumbnails',
+			'slug'		=> 'regenerate-thumbnails',
 			'required'	=> false
 		),
 		array(
