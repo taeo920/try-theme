@@ -2,6 +2,7 @@
 
 /**
  * Loads template part file
+ * Provides same functionality as get_template_part() but with the added benefit of optional output buffering and the ability to pass parameters
  *
  * @param string $slug The slug name for the generic template or sub-directory
  * @param string $name The name of the specialised template
@@ -30,7 +31,7 @@ function try_get_template_part( $slug, $name, $echo = true, $params = array() ) 
 
     // Buffer output and return if echo is false
 	if( !$echo ) ob_start();
-    require( $template_file );
+    load_template( $template_file, true );
 	if( !$echo ) return ob_get_clean();
 }
 
@@ -42,10 +43,13 @@ function try_get_template_part( $slug, $name, $echo = true, $params = array() ) 
  * @param int $depth The depth of the current comment
  */
 function try_comment_list( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	$GLOBALS['args'] = $args;
-	$GLOBALS['depth'] = $depth;
-	get_template_part('partials/comment');
+	$args = array(
+		 'comment' => $comment,
+		 'args' => $args,
+		 'depth' => $depth
+	);
+
+	try_get_template_part('partials', 'comment', true, $args );
 }
 
 /**
@@ -65,9 +69,9 @@ function try_truncate( $string, $length, $append = '&hellip;' ) {
 
 /**
  * Retrieves the url of an image uploaded via an ACF image field
- * TODO: Add support for nested fields and return types other than array
+ * TODO: Add support for return types other than array
  *
- * @param (string) $name The name of the ACF field - assume default return of image object is used
+ * @param (string) $name The name of the ACF field - assume default return of image array is used
  * @param (string) $size The size of the image to be retrieved
  * @return (string) The image url ( defaults to original size )
  */
@@ -76,20 +80,10 @@ function try_get_acf_image_src( $name, $size = 'thumbnail' ) {
 	if( !function_exists( 'get_field' ) )
 		return false;
 
-	// Assume default of image object is used
-	$image_array = get_field( $name );
+	// Assume default of image array is used
+	$image_array = ( acf_get_row() ) ? get_sub_field( $name ) : get_field( $name );
 	
-	// Return false if field is empty or type other than object is being used
-	if( !$image_array || !is_array( $image_array ) )
-		return false;
-
-	if( array_key_exists( $size, $image_array['sizes'] ) ) {
-		$image_url = $image_array['sizes'][$size];
-	} else {
-		$image_url = $image_array['url'];
-	}
-
-	return $image_url;
+	return try_get_image_src_from_array( $image_array, $size );
 }
 
 /**
@@ -101,6 +95,39 @@ function try_get_acf_image_src( $name, $size = 'thumbnail' ) {
  */
 function try_the_acf_image_src( $name, $size = 'thumbnail' ) {
 	echo try_get_acf_image_src( $name, $size );
+}
+
+/**
+ * Retrieves the correctly sized image source from an array produced by wp_prepare_attachment_for_js()
+ *
+ * @param (array) $image_array Image array produced by wp_prepare_attachment_for_js() function
+ * @param (string) $size The size of the image to be retrieved
+ * @return (string) The image url ( defaults to original size )
+ */
+function try_get_image_src_from_array( $image_array, $size = 'thumbnail' ) {
+	// Return false if field is empty or type other than array is being used
+	if( !$image_array || !is_array( $image_array ) )
+		return false;
+
+	// Get the correct size url if found - otherwise get the original image url
+	if( array_key_exists( $size, $image_array['sizes'] ) ) {
+		$image_url = $image_array['sizes'][$size];
+	} else {
+		$image_url = $image_array['url'];
+	}
+
+	return $image_url;
+}
+
+/**
+ * Echos the correctly sized image source from an array produced by wp_prepare_attachment_for_js()
+ *
+ * @param (array) $image_array Image array produced by wp_prepare_attachment_for_js() function
+ * @param (string) $size The size of the image to be retrieved
+ * @return (string) The image url ( defaults to original size )
+ */
+function try_the_image_src_from_array( $image_array, $size = 'thumbnail' ) {
+	echo try_get_image_src_from_array( $image_array, $size );
 }
 
 /**
@@ -222,7 +249,7 @@ function try_youtube_short_link( $id ) {
  * @return string YouTube video embed link
  */
 function try_youtube_embed_link( $id ) {
-	return 'https://www.youtube.com/embed/' . $id . '?rel=0&autoplay=1';
+	return 'https://www.youtube.com/embed/' . $id . '?rel=0&autoplay=1&rel=0';
 }
 
 /**

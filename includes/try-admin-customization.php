@@ -25,11 +25,11 @@ function try_unregister_default_wp_widgets() {
 	unregister_widget('WP_Widget_Meta');
 	unregister_widget('WP_Widget_Links');
 	unregister_widget('WP_Widget_Pages');
-	// unregister_widget('WP_Widget_Archives');
+	unregister_widget('WP_Widget_Archives');
 	unregister_widget('WP_Widget_Recent_Posts');
 	unregister_widget('WP_Widget_Tag_Cloud');
 	unregister_widget('WP_Widget_RSS');
-	// unregister_widget('WP_Widget_Categories');
+	unregister_widget('WP_Widget_Categories');
 	unregister_widget('WP_Widget_Text');
 	unregister_widget('WP_Nav_Menu_Widget');
 	unregister_widget('GFWidget');
@@ -40,7 +40,8 @@ add_action('widgets_init', 'try_unregister_default_wp_widgets');
  * Hide admin pages that are not used
  */
 function try_remove_menu_pages() {
-	remove_menu_page( 'edit-comments.php' );
+	remove_menu_page( 'edit-comments.php' ); // Comments
+	remove_menu_page( 'edit.php' );	// Posts
 }
 add_action('admin_menu', 'try_remove_menu_pages');
 
@@ -76,17 +77,18 @@ add_filter('menu_order', 'try_menu_order');
 function try_customize_editor_role() {
 	$role = get_role('editor');
 
-	$role->add_cap('edit_theme_options');
+	// Provides editor access to widgets and menus
+	// $role->add_cap('edit_theme_options');
 
-	$role->add_cap('gravityforms_edit_forms');
-	$role->add_cap('gravityforms_delete_forms');
-	$role->add_cap('gravityforms_create_form');
-	$role->add_cap('gravityforms_view_entries');
-	$role->add_cap('gravityforms_edit_entries');
-	$role->add_cap('gravityforms_delete_entries');
-	$role->add_cap('gravityforms_export_entries');
-	$role->add_cap('gravityforms_view_entry_notes');
-	$role->add_cap('gravityforms_edit_entry_notes');
+	// $role->add_cap('gravityforms_edit_forms');
+	// $role->add_cap('gravityforms_delete_forms');
+	// $role->add_cap('gravityforms_create_form');
+	// $role->add_cap('gravityforms_view_entries');
+	// $role->add_cap('gravityforms_edit_entries');
+	// $role->add_cap('gravityforms_delete_entries');
+	// $role->add_cap('gravityforms_export_entries');
+	// $role->add_cap('gravityforms_view_entry_notes');
+	// $role->add_cap('gravityforms_edit_entry_notes');
 }
 add_filter('after_switch_theme', 'try_customize_editor_role');
 
