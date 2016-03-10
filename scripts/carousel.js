@@ -4,7 +4,7 @@
 
 require('./vendor/jquery.owl.carousel');
 var $ = require('jquery');
-var $carousel = $('.js-owlCarousel');
+var $carousel = $('.js-carousel');
 
 /**
  * Initialize carousels

@@ -1,6 +1,6 @@
 var gulp         = require('gulp');
 var gutil        = require('gulp-util');
-var less         = require('gulp-less');
+var sass         = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var minifycss    = require('gulp-minify-css');
 var rename       = require('gulp-rename');
@@ -12,11 +12,11 @@ var paths        = require('../config').paths;
 var dest = paths.dist + '/styles';
 
 gulp.task('styles', function() {
-  return gulp.src([paths.styles + '/app.less'])
+  return gulp.src([paths.styles + '/app.scss'])
     .pipe(plumber({
       errorHandler: handleErrors
     }))
-    .pipe(less())
+    .pipe(sass())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'Opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(dest))
     .pipe(minifycss({

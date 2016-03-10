@@ -1,4 +1,4 @@
-<?php global $comment, $args, $depth;
+<?php
 // note the closing li is removed from the template
 // as it is automatically inserted by wp
 // http://codex.wordpress.org/Function_Reference/wp_list_comments

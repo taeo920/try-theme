@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var minifycss = require('gulp-minify-css');
 var rename = require('gulp-rename');
@@ -26,11 +26,11 @@ gulp.task('adminScripts', function() {
 });
 
 gulp.task('adminStyles', function() {
-  return gulp.src([paths.styles + '/admin/admin.less'])
+  return gulp.src([paths.styles + '/admin/admin.scss'])
     .pipe(plumber({
       errorHandler: handleErrors
     }))
-    .pipe(less())
+    .pipe(sass())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(paths.dist + '/styles'))
     .pipe(minifycss({
@@ -46,11 +46,11 @@ gulp.task('adminStyles', function() {
 });
 
 gulp.task('editorStyles', function() {
-  return gulp.src([paths.styles + '/admin/editor.less'])
+  return gulp.src([paths.styles + '/admin/editor.scss'])
     .pipe(plumber({
       errorHandler: handleErrors
     }))
-    .pipe(less())
+    .pipe(sass())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(paths.dist + '/styles'))
     .pipe(minifycss({

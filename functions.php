@@ -29,7 +29,7 @@ function try_theme_setup() {
 	));
 
 	// Disables the admin bar
-	// add_filter('show_admin_bar', '__return_false');
+	add_filter('show_admin_bar', '__return_false');
 
 	// Cleanup Head
 	remove_action('wp_head', 'rsd_link');
@@ -41,6 +41,8 @@ function try_theme_setup() {
 	remove_action('wp_head', 'start_post_rel_link', 10, 0);
 	remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
+	remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
 
 	// Include custom post types, custom taxonomies, and general includes
 	$includes = array_merge(

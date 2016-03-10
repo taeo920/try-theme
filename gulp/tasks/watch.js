@@ -3,9 +3,9 @@ var path    = require('path');
 var paths   = require('../config').paths;
 
 gulp.task('watch', ['watchify'], function() {
-	// Watch theme .less files
+	// Watch theme .scss files
 	gulp.watch([
-		paths.styles + '/**/*.less',
+		paths.styles + '/**/*.scss',
 		'!' + paths.styles + '/admin/**'
 	], ['styles']);
 
@@ -15,11 +15,11 @@ gulp.task('watch', ['watchify'], function() {
 		'!' + paths.scripts + '/admin/**'
 	], ['browserify']);
 
-	// Watch editor.less
-	gulp.watch(paths.styles + '/admin/editor.less', ['editorStyles']);
+	// Watch editor.scss
+	gulp.watch(paths.styles + '/admin/editor.scss', ['editorStyles']);
 
 	// Watch admin styles
-	gulp.watch(paths.styles + '/admin/admin.less', ['adminStyles']);
+	gulp.watch(paths.styles + '/admin/admin.scss', ['adminStyles']);
 
 	// Watch admin scripts
 	gulp.watch(paths.scripts + '/admin/admin.js', ['adminScripts']);

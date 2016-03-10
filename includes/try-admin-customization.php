@@ -30,7 +30,7 @@ function try_unregister_default_wp_widgets() {
 	unregister_widget('WP_Widget_Tag_Cloud');
 	unregister_widget('WP_Widget_RSS');
 	unregister_widget('WP_Widget_Categories');
-	unregister_widget('WP_Widget_Text');
+	// unregister_widget('WP_Widget_Text');
 	unregister_widget('WP_Nav_Menu_Widget');
 	unregister_widget('GFWidget');
 }
@@ -40,8 +40,8 @@ add_action('widgets_init', 'try_unregister_default_wp_widgets');
  * Hide admin pages that are not used
  */
 function try_remove_menu_pages() {
-	remove_menu_page( 'edit-comments.php' ); // Comments
-	remove_menu_page( 'edit.php' );	// Posts
+	// remove_menu_page( 'edit-comments.php' ); // Comments
+	// remove_menu_page( 'edit.php' );	// Posts
 }
 add_action('admin_menu', 'try_remove_menu_pages');
 

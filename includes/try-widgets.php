@@ -6,11 +6,11 @@
 register_sidebar( array(
 	'name' => 'Sidebar',
 	'id' => 'sidebar',
-	'class' => 'widgetFeed-widget',
+	'class' => 'widget',
 	'description' => 'Sidebar',
-	'before_widget' => '<li class="widgetFeed-widget %2$s"><div class="widgetFeed-content">',
+	'before_widget' => '<li class="widget %2$s"><div class="widget-content">',
 	'after_widget' => '</div></li>',
-	'before_title' => '<h4 class="widgetFeed-title">',
+	'before_title' => '<h4 class="widget-title">',
 	'after_title' => '</h4>'
 ));
 
