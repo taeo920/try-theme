@@ -31,7 +31,7 @@ function try_get_template_part( $slug, $name, $echo = true, $params = array() ) 
 
     // Buffer output and return if echo is false
 	if( !$echo ) ob_start();
-    load_template( $template_file, true );
+    load_template( $template_file, false );
 	if( !$echo ) return ob_get_clean();
 }
 
