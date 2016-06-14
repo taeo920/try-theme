@@ -21,7 +21,7 @@ function try_plugins() {
 		),
 		array(
 			'name'		=> 'Admin Columns',
-			'slug'		=> 'admin-columns',
+			'slug'		=> 'codepress-admin-columns',
 			'required'	=> false
 		),
 		array(
