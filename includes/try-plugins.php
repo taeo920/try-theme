@@ -32,7 +32,7 @@ function try_plugins() {
 		array(
 			'name'		=> 'Gravity Forms',
 			'slug'		=> 'gravity-forms',
-            'source'	=> 'http://s3.amazonaws.com/gravityforms/releases/gravityforms_1.9.13.26.zip?AWSAccessKeyId=1603BBK66770VCSCJSG2&Expires=1443537480&Signature=hjxzybSejAgTvAxIrl1jWerihwA%3D',
+            'source'	=> 'http://s3.amazonaws.com/gravityforms/releases/gravityforms_2.0.0.zip?AWSAccessKeyId=1603BBK66770VCSCJSG2&Expires=1466021670&Signature=2xzc2DGwbahHzDjC4RJ1KNolWXU%3D',
 			'required'	=> false
 		),
 		array(
