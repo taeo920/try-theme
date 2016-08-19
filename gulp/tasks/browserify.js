@@ -18,7 +18,7 @@ gulp.task('enable-watch-mode', function() {
 
 // Browserify and copy js files
 gulp.task('browserify', watchify(function(watchify) {
-	return gulp.src(paths.scripts + '/app.js')
+	return gulp.src(paths.scripts + '/scripts.js')
 		.pipe(plumber({
 			errorHandler: handleErrors
 		}))

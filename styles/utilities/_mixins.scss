@@ -2,13 +2,6 @@
 Theme Mixins
 ================================================================================= */
 
-// REM font-size fallback
-@mixin font-size( $sizeValue ) {
-	$remValue: ( $sizeValue / 10 );
-	font-size: #{$sizeValue}px;
-	font-size: #{$remValue}rem;
-}
-
 @mixin icon-font() {
 	font-family: $font-family-icon !important;
 	font-style: normal !important;

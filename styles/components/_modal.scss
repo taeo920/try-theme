@@ -1,6 +1,10 @@
 /* =================================================================================
-Reusable pieces to include in modules
+Modal
 ================================================================================= */
+
+@import "vendor/colorbox";
+
+// override defaults here...
 
 // Small and larger
 @media screen and (min-width: $screen-sm-min) {}

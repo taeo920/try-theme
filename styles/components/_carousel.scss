@@ -1,10 +1,8 @@
 /* =================================================================================
-Lightbox
+Carousel
 ================================================================================= */
 
-@import "vendor/colorbox";
-
-// override defaults here...
+@import "vendor/owl.carousel";
 
 // Small and larger
 @media screen and (min-width: $screen-sm-min) {}

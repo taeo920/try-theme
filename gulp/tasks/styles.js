@@ -12,7 +12,7 @@ var paths        = require('../config').paths;
 var dest = paths.dist + '/styles';
 
 gulp.task('styles', function() {
-  return gulp.src([paths.styles + '/app.scss'])
+  return gulp.src([paths.styles + '/styles.scss'])
     .pipe(plumber({
       errorHandler: handleErrors
     }))
