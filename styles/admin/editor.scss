@@ -1,26 +1,40 @@
 /**
- * Vendor
+ * Variables
  */
-@import (reference) "../vendor/bootstrap/less/variables.less";
-@import (reference) "../vendor/bootstrap/less/mixins.less";
-@import "../vendor/bootstrap/less/normalize.less";
-@import "../vendor/bootstrap/less/scaffolding.less";
-@import "../vendor/bootstrap/less/grid.less";
-@import "../vendor/bootstrap/less/utilities.less";
-@import "../vendor/bootstrap/less/responsive-embed.less";
+ @import "../base/_variables";
+ @import "../vendor/bootstrap/_variables";
 
 /**
- * Theme dependencies
+ * Vendor - Bootstrap and other third party stylesheets
  */
-@import (reference) "../variables.less";
-@import (reference) "../mixins.less";
-@import "../fonts.less";
-@import "../utilities.less";
+@import "../vendor/bootstrap/_mixins";
+@import "../vendor/bootstrap/_normalize";
+@import "../vendor/bootstrap/_scaffolding";
+@import "../vendor/bootstrap/_grid";
+@import "../vendor/bootstrap/_print";
+@import "../vendor/bootstrap/_utilities";
+@import "../vendor/bootstrap/_responsive-embed";
 
 /**
- * Editor styles
+ * Utilities
  */
+@import "../utilities/_mixins";
+@import "../utilities/_helpers";
+
+/**
+ * Base - global styles and variables
+ */
+@import "../base/_fonts";
+@import "../base/_global";
+
+/**
+ * Components - reusable components
+ */
+@import "../components/_button";
+@import "../components/_composition";
+
 body, body.wp-autoresize {
+	@extend .composition;
 	padding-top: 10px !important;
 	padding-right: 10px !important;
 	padding-bottom: 10px !important;
