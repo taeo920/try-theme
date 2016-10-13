@@ -81,7 +81,7 @@ function try_get_acf_image_src( $name, $size = 'thumbnail' ) {
 		return false;
 
 	// Assume default of image array is used
-	$image_array = ( acf_get_row() ) ? get_sub_field( $name ) : get_field( $name );
+	$image_array = ( get_row() ) ? get_sub_field( $name ) : get_field( $name );
 	
 	return try_get_image_src_from_array( $image_array, $size );
 }
