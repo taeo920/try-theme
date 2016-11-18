@@ -31,7 +31,7 @@ function try_get_template_part( $slug, $name, $echo = true, $params = array() ) 
 
     // Buffer output and return if echo is false
 	if( !$echo ) ob_start();
-    load_template( $template_file, false );
+    include( $template_file );
 	if( !$echo ) return ob_get_clean();
 }
 
@@ -361,11 +361,11 @@ function try_debug( $variable ) {
 }
 
 /**
- * Converts a string into Twitter share friendly format
+ * Converts a string into URL share friendly format
  *
  * @param  string $string String to format
- * @return string         Twitter sharable string
+ * @return string         URL sharable string
  */
-function try_format_twitter_text($string) {
+function try_format_url_safe_text($string) {
     return htmlspecialchars(urlencode(html_entity_decode($string, ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8');
 }

@@ -3,7 +3,7 @@
 <div class="container">
 	<section class="posts posts-search row" >
 		<div class="col-sm-12">
-			<h1 class="posts-title">
+			<h1 class="page-title">
 				<?php echo $wp_query->found_posts; ?> Result<?php if($count != 1) { echo 's'; } ?> for "<?php the_search_query(); ?>"
 			</h1>
 

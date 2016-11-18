@@ -40,10 +40,10 @@ add_action('widgets_init', 'try_unregister_default_wp_widgets');
  * Hide admin pages that are not used
  */
 function try_remove_menu_pages() {
-	// remove_menu_page( 'edit-comments.php' ); // Comments
-	// remove_menu_page( 'edit.php' );	// Posts
+	remove_menu_page( 'edit-comments.php' ); // Comments
+	remove_menu_page( 'edit.php' );	// Posts
 }
-add_action('admin_menu', 'try_remove_menu_pages');
+//add_action('admin_menu', 'try_remove_menu_pages');
 
 /**
  * Change admin menu order
@@ -78,19 +78,19 @@ function try_customize_editor_role() {
 	$role = get_role('editor');
 
 	// Provides editor access to widgets and menus
-	// $role->add_cap('edit_theme_options');
+	$role->add_cap('edit_theme_options');
 
-	// $role->add_cap('gravityforms_edit_forms');
-	// $role->add_cap('gravityforms_delete_forms');
-	// $role->add_cap('gravityforms_create_form');
-	// $role->add_cap('gravityforms_view_entries');
-	// $role->add_cap('gravityforms_edit_entries');
-	// $role->add_cap('gravityforms_delete_entries');
-	// $role->add_cap('gravityforms_export_entries');
-	// $role->add_cap('gravityforms_view_entry_notes');
-	// $role->add_cap('gravityforms_edit_entry_notes');
+	$role->add_cap('gravityforms_edit_forms');
+	$role->add_cap('gravityforms_delete_forms');
+	$role->add_cap('gravityforms_create_form');
+	$role->add_cap('gravityforms_view_entries');
+	$role->add_cap('gravityforms_edit_entries');
+	$role->add_cap('gravityforms_delete_entries');
+	$role->add_cap('gravityforms_export_entries');
+	$role->add_cap('gravityforms_view_entry_notes');
+	$role->add_cap('gravityforms_edit_entry_notes');
 }
-add_filter('after_switch_theme', 'try_customize_editor_role');
+//add_filter('after_switch_theme', 'try_customize_editor_role');
 
 /**
  * Removes admin bar items
@@ -121,13 +121,13 @@ function try_enable_mce_buttons( $buttons ) {
 
 	return $buttons;
 }
-add_filter('mce_buttons_2', 'try_enable_mce_buttons');
+//add_filter('mce_buttons_2', 'try_enable_mce_buttons');
 
 /**
  * Remove post_tags and categories from admin
  */
 function try_unregister_default_taxonomies() {
-	// register_taxonomy('category', array() );
-	// register_taxonomy('post_tag', array() );
+	register_taxonomy('category', array() );
+	register_taxonomy('post_tag', array() );
 }
-add_action('init', 'try_unregister_default_taxonomies');
+//add_action('init', 'try_unregister_default_taxonomies');

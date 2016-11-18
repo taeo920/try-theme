@@ -1,9 +1,8 @@
-/**
- * Base - global styles and variables
+ /**
+ * Utilities - mixins and helper classes
  */
- @import "base/_variables";
- @import "base/_fonts";
- @import "base/_global";
+@import "utilities/_mixins";
+@import "utilities/_helpers";
 
 /**
  * Vendor - Bootstrap and other third party stylesheets
@@ -16,6 +15,15 @@
 @import "vendor/bootstrap/_print";
 @import "vendor/bootstrap/_utilities";
 @import "vendor/bootstrap/_responsive-embed";
+@import "vendor/bootstrap/_responsive-utilities";
+
+/**
+ * Base - global styles and variables
+ */
+ @import "base/_variables";
+ @import "base/_fonts";
+ @import "base/_global";
+ @import "base/_layout";
 
 /**
  * Components - reusable components
@@ -24,18 +32,13 @@
 @import "components/_carousel";
 @import "components/_composition";
 @import "components/_footer";
-@import "components/_forms";
+@import "components/_form";
 @import "components/_header";
 @import "components/_modal";
 @import "components/_search";
+@import "components/_sidebar";
 
 /**
  * Templates - styles specific to an individual page or template
  */
- @import "templates/_home";
-
- /**
- * Utilities - 
- */
-@import "utilities/_mixins";
-@import "utilities/_helpers";
+ @import "templates/_page-home";

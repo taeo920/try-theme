@@ -36,18 +36,8 @@ function try_plugins() {
 			'required'	=> false
 		),
 		array(
-			'name'		=> 'Password Protected',
-			'slug'		=> 'password-protected',
-			'required'	=> false
-		),
-		array(
 			'name'		=> 'Simple Page Ordering',
 			'slug'		=> 'simple-page-ordering',
-			'required'	=> false
-		),
-		array(
-			'name'		=> 'WP Super Cache',
-			'slug'		=> 'wp-super-cache',
 			'required'	=> false
 		)
 	);

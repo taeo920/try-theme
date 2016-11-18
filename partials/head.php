@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<!--[if lte IE 8 ]> <html <?php language_attributes(); ?> class="ie ie8 lte9 lte8 no-js"> <![endif]-->
-<!--[if IE 9 ]>     <html <?php language_attributes(); ?> class="ie ie9 lte9 no-js"> <![endif]-->
+<!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="ie ie6 lte9 lte8 lte7 lte6 no-js"> <![endif]-->
+<!--[if IE 7 ]>    <html <?php language_attributes(); ?> class="ie ie7 lte9 lte8 lte7 no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html <?php language_attributes(); ?> class="ie ie8 lte9 lte8 no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html <?php language_attributes(); ?> class="ie ie9 lte9 no-js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html <?php language_attributes(); ?> class="no-js"> <!--<![endif]-->
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
@@ -13,6 +15,7 @@
 	<?php wp_head(); ?>
 
 	<!--[if lte IE 9 ]>
+		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/selectivizr.js"></script>
 		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/respond.js"></script>
 		<script src="<?php bloginfo('template_url') ?>/scripts/vendor/mediamatch.js"></script>
 	<![endif]-->

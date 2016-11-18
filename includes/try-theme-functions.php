@@ -1,15 +1,30 @@
 <?php
 
 /**
- * AJAX Function Template
+ * Description of what the function does and how it is used
+ *
+ * @param string $var Description of the expected input
+ * @return string Description of the expected output
  */
-function function_name() {
-	extract( $_POST, EXTR_SKIP );
-
-	$array = array();
-
-	echo json_encode( $array );
-	exit;
+function try_example_function( $var ) {
+	return $var;
 }
-add_action( 'wp_ajax_nopriv_function_name', 'function_name' );
-add_action( 'wp_ajax_function_name', 'function_name' );
+
+/**
+ * Generate pagination links
+ */
+function try_pagination() {
+	global $wp_query;
+
+	$big = 999999999; // need an unlikely integer
+
+	return paginate_links( array(
+		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+		'format' => '?paged=%#%',
+		'current' => max( 1, get_query_var('paged') ),
+		'total' => $wp_query->max_num_pages,
+		'mid_size' => 1,
+		'prev_text' => '<i class="icon icon-angle-left"></i> Previous',
+		'next_text' => 'Next <i class="icon icon-angle-right"></i>',
+	) );
+}

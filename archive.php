@@ -2,7 +2,7 @@
 	<div class="row">
 		<section class="col-sm-8">
 			<?php if ( have_posts() ) : the_post(); ?>
-				<h1 class="page-title archive">
+				<h1 class="page-title">
 					<?php if ( is_tag() ) : ?>
 						<?php single_tag_title(); ?>
 					<?php elseif ( is_day() ) : ?>

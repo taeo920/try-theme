@@ -1,25 +1,18 @@
 <header class="header">
 	<div class="header-container container">
-		<?php if( is_front_page() ) : ?>
-			<h1 class="header-logo">
-				<a class="header-logo" href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a>
-			</h1>
-		<?php else : ?>
+		<?php if( is_front_page() ) echo '<h1>'; ?>
 			<a class="header-logo" href="<?php echo bloginfo('url'); ?>"><?php echo bloginfo('name'); ?></a>
-		<?php endif; ?>
+		<?php if( is_front_page() ) echo '</h1>'; ?>
 
 		<div class="header-menu">
 			<?php wp_nav_menu( array(
 				'theme_location' => 'header',
-				'container' => 'nav',
-				'container_class' => 'mainMenu-menu',
+				'container' => '',
 				'menu' => 'Header',
-				'menu_class' => 'mainMenu-list'
+				'menu_class' => 'header-menu-list'
 			)); ?>
 		</div>
 
-		<div class="search-form">
-			<?php try_get_template_part('partials', 'search-form'); ?>
-		</div>
+		<?php try_get_template_part('partials', 'search-form'); ?>
 	</div>
 </header>

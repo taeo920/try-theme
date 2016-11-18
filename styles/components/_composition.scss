@@ -5,48 +5,41 @@ Compositions
 .composition {
 	a { color: $gray-dark; text-decoration: underline; } 
 
-	ul, ol { margin-bottom: 1.5rem; padding-left: 1.8rem; overflow: hidden;
+	ul, ol { list-style: none; padding-left: 1.8rem; overflow: hidden;
 		ul, ol { margin-bottom: 0; }
 	}
 	ol { list-style: decimal outside; }
 	ul { list-style: disc outside; }
-	li { line-height: 1.8rem; }
+	li { line-height: 1.8em; }
 
-	h1, h2, h3, h4, h5, h6 { font-weight: bold; margin-bottom: 1.5rem; }
-	h1 { @include font-size( 32 ); }
-	h2 { @include font-size( 24 ); }
-	h3 { @include font-size( 20 ); }
-	h4 { @include font-size( 18 ); }
-	h5 { @include font-size( 16 ); }
-	h5 { @include font-size( 14 ); }
-	h6 { @include font-size( 12 ); }
+	h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+	h1 { font-size: 3.6rem }
+	h2 { font-size: 3.2rem; }
+	h3 { font-size: 2.8rem; }
+	h4 { font-size: 2.4rem; }
+	h5 { font-size: 2.0rem; }
+	h5 { font-size: 1.8rem; }
+	h6 { font-size: 1.6rem; }
 
-	p { line-height: 1.8rem; margin-bottom: 1.5rem; }
-	p:last-child { margin-bottom: 0; }
+	p { line-height: 1.8em; }
+
 	strong { font-weight: bold; }
+
+    blockquote {}
+
+    hr {}
     
     img, figure { max-width: 100%; }
     img { height: auto; }
-    
     figure {
-		figcaption { margin-top: .5rem; font-size: 1.3rem; font-style: italic; }
+		figcaption { margin-top: .5em; font-size: 1.3rem; font-style: italic; }
+	}
+
+	> * {
+		margin-bottom: 2rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 }
-
-// Small and larger
-@media screen and (min-width: $screen-sm-min) {}
-
-// Medium and larger
-@media screen and (min-width: $screen-md-min) {}
-
-// Large and larger
-@media screen and (min-width: $screen-lg-min) {}
-
-// X-Small only
-@media screen and (max-width: $screen-xs-max) {}
-
-// Small only
-@media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {}
-
-// Medium only
-@media screen and (min-width: $screen-md-min) and (max-width: $screen-md-max) {}

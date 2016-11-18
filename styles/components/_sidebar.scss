@@ -1,7 +1,15 @@
 /* =================================================================================
-Carousel
+Sidebar
 ================================================================================= */
 
-@import "vendor/owl.carousel";
+.sidebar-widget {
+	&:last-child {
+		margin-bottom: 0;
+	}
 
-// override defaults here...
+	&.widget_text {
+		.textwidget {
+			@extend .composition;
+		}
+	}
+}

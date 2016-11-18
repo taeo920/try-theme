@@ -1,0 +1,18 @@
+/* =================================================================================
+Form
+================================================================================= */
+
+.form {
+	input[type="text"],
+	input[type="email"],
+	select,
+	textarea {
+		width: 100%;
+	}
+
+	select {
+		appearance: none;
+		-webkit-appearance: none;
+    	-moz-appearance: none;
+	}
+}

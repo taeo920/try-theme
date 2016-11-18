@@ -2,26 +2,41 @@
  *  Module: carousel
  */
 
+// Using Owl Carousel v2
 require('./vendor/jquery.owl.carousel');
-var $ = require('jquery');
-var $carousel = $('.js-carousel');
+
+var $ 			= require('jquery');
+var $carousel 	= $('.js-carousel');
 
 /**
  * Initialize carousels
  */
 function init() {
-	$carousel.owlCarousel({
+	$carousel.on('initialized.owl.carousel changed.owl.carousel refreshed.owl.carousel', function (event) {
+	    if (!event.namespace) return;
+	    var carousel = event.relatedTarget,
+	        element = event.target,
+	        current = carousel.current();
+	    $('.owl-next', element).toggleClass('disabled', current === carousel.maximum());
+	    $('.owl-prev', element).toggleClass('disabled', current === carousel.minimum());
+	});
+
+	$carousel_standard.owlCarousel({
 		items: 1,
-		itemsCustom: [
-			[0, 1]
-		],
-		rewindNav: true,
-		navigation: true,
-		navigationText: ['<', '>'], // use icon font to display arrows
-		pagination: true,
+		nav: true,
+		navText: ['<', '>'], // use icon font to display arrows
+		dots: false,
 		autoplay: true,
-		stopOnHover: true,
-		responsiveBaseWidth: window //for IE8 set to main wrapper
+		autoplayHoverPause: true,
+		rewind: false,
+		responsive: {
+			0: {
+				nav: false
+			},
+			768: {
+				nav: true
+			}
+		}
 	});
 };
 

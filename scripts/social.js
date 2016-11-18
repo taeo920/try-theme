@@ -3,13 +3,13 @@
  */
 
 require('jquery-colorbox');
-var $    = require('jquery');
-var util = require('./util.js');
+
+var $ 			= require('jquery');
+var utilities 	= require('./utilities.js');
 
 var defaults = {
 	channelAttrName: "share-channel",
-	fbAppId: '',
-	mandrillApi: ''
+	fbAppId: ''
 };
 
 /**
@@ -18,52 +18,7 @@ var defaults = {
  */
 function SocialShare(options) {
 	this.options = $.extend({}, defaults, options);
-}
-
-/**
- * Open lightbox with email share form
- */
-function openEmailShare(el) {
-	var self = this;
-
-	// open lightbox with form
-	$.colorbox({
-		href: urls.ajax,
-		data: {
-			action: 'get_form_email'
-		},
-		onComplete: function() {
-			var $form = $('.form--email').find('form');
-
-			// on form submit create object of values from form
-			$form.on('submit', function(e) {
-				e.preventDefault();
-
-				// TODO: perform validation first
-
-				var opts = {};
-				var fields = $form.serializeArray();
-
-				$.each(fields, function(i, field) {
-					opts[field.name] = field.value;
-				});
-
-				opts.htmlBody = opts.textBody;
-
-				if ( el ) {
-					opts.subject = $(el).data('subject');
-				}
-
-				self.mandrillShare(opts).done(function (data) {
-					if ( data.status === 'error' ) {
-						console.log('Mandrill error: ', data.message);
-					} else {
-						$.colorbox.close();
-					}
-				});
-			});
-		}
-	});
+	this.init();
 }
 
 /**
@@ -76,9 +31,9 @@ SocialShare.prototype.init = function () {
 		// on click trigger the appropriate share function
 		$(this).on('click', function () {
 			var data = $(this).data();
-			var channel = data[ util.camelCase(self.options.channelAttrName) ];
+			var channel = data[ utilities.dashToCamel(self.options.channelAttrName) ];
 
-			if ( channel === 'mandrill' ) {
+			if ( channel === 'email' ) {
 				openEmailShare.call(self, this);
 				return;
 			}
@@ -88,6 +43,79 @@ SocialShare.prototype.init = function () {
 			var popup = (url) ? window.open(url, 'share', 'resizable=yes,scrollbars=yes,width=600,height=500') : false;
 			return false;
 		});
+	});
+}
+
+/**
+ * Open lightbox with email share form
+ */
+function openEmailShare(el) {
+	var self = this;
+
+	// open lightbox with form
+	$.colorbox({
+		iframe: false,
+		href: urls.ajax,
+		data: {
+			action: 'try_get_modal',
+			template: 'modal-email-share',
+			post_id: $(el).data('post-id')
+		},
+		onComplete: function() {
+			var form = $('.form--email-share');
+			var button = form.find('[type="submit"]');
+
+			form.on('submit', function(e) {
+				e.preventDefault();
+
+				form.find('.form-error-notice').remove();
+				form.find('.form-error').removeClass('error');
+				$.colorbox.resize();
+
+				if( !button.hasClass('btn--disabled') ) {
+					var sender = form.find('input[name="sender"]').val();
+					var recipient = form.find('input[name="recipient"]').val();
+					var errors = new Array();
+
+					if( !utilities.isEmail( sender ) ) errors.push('sender');
+					if( !utilities.isEmail( recipient ) ) errors.push('recipient');
+
+					if( errors.length > 0 ) {
+						form.prepend('<p class="form-error-notice col-xs-12">Please provide valid email addresses.</p>');
+
+						$.each( errors, function( index, value ) {
+							var field = form.find('input[name="' + value + '"]');
+							field.addClass('form-error');
+						});
+
+						$.colorbox.resize();
+					} else {
+						$.ajax({
+							url: urls.ajax,
+							dataType: 'json',
+							type: 'POST',
+							data: {
+								action: 'try_submit_email_share_form',
+								data: form.serialize(),
+								nonce: form.data('nonce')
+							},
+							beforeSend: function() {
+								button.addClass('btn--disabled');
+							},
+							success: function(data) {
+								form.after('<div class="row"><span class="col-xs-12 success-message">Thank you for sharing!</span></div>');
+								form.remove();
+								$.colorbox.resize();
+							},
+							complete: function() {
+								button.removeClass('btn--disabled');
+							}
+						});
+					}
+				}
+			});
+		},
+		close: ''
 	});
 }
 
@@ -165,7 +193,7 @@ SocialShare.prototype.twitterShare = function (details) {
 SocialShare.prototype.pinterestShare = function (details) {
 	var url = details.url || document.location.href;
 	var media = encodeURI(details.media) || "";
-	var description = details.description | "";
+	var description = details.description || "";
 	return 'http://www.pinterest.com/pin/create/button/?url=' + encodeURI(url) + '&media=' + media + '&description=' + description;;
 }
 
@@ -191,51 +219,11 @@ SocialShare.prototype.googleplusShare = function (details) {
 }
 
 /**
- * Handles email share via Mandrill
- * @return {String}
- */
-SocialShare.prototype.mandrillShare = function (data) {
-	var self = this;
-	var defaults = {
-		fromEmail: 'no-reply@' + window.location.hostname,
-		fromName: '',
-		toEmail: '',
-		toName: '',
-		subject: 'Read this article from: ' + urls.base,
-		htmlBody: '',
-		textBody: ''
-	}
-	var details = $.extend({}, defaults, data);
-
-	return $.ajax({
-		type: 'POST',
-		url: 'https://mandrillapp.com/api/1.0/messages/send.json',
-		data: {
-			'key': self.options.mandrillApi,
-			'message': {
-				'auto_text': true,
-				'auto_html': true,
-				'inline_css': true,
-				'headers': {
-					'Reply-to': details.fromEmail
-				},
-				'from_email': details.fromEmail,
-				'from_name': details.fromName,
-				'to': [{
-					'email': details.toEmail,
-					'name': details.toName,
-					'type': 'to'
-				}],
-				'subject': details.subject,
-				'html': window.location.href + '\n\n' + details.htmlBody,
-				'text': window.location.href + '\n\n' + details.textBody
-			}
-		}
-	});
-}
-
-/**
  * Public API
  * @type {Object}
  */
-module.exports = SocialShare;
+module.exports = {
+	init: function (opts) {
+		return new SocialShare(opts);
+	}
+};

@@ -26,10 +26,14 @@ add_action('widgets_init', 'try_load_widgets');
  * Custom Widget Template
  */
 class try_custom_widget extends WP_Widget {
-	function __constructor() {
-		$widget_ops = array('classname' => 'custom_widget', 'description' => 'Example Description');
-		$control_ops = array('width' => 400, 'height' => 450);
-		$this->WP_Widget('custom_widget', 'Custom Widget', $widget_ops, $control_ops);
+	function __construct() {
+		$widget_ops = array(
+			'classname' => 'widget_custom',
+			'description' => 'Custom widget.',
+			'customize_selective_refresh' => true,
+		);
+
+		parent::__construct( 'custom', 'Custom Widget', $widget_ops );
 	}
 
 	/**
