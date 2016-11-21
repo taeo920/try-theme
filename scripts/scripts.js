@@ -16,10 +16,10 @@ var ui				= require('./ui.js');
  * Initialize the app on DOM ready
  */
 $(function() {
-	analytics.init(
+	analytics.init({
         addGA: false,
 		gtmid: ''
-	);
+	});
 	carousel.init();
 	social.init({
 		fbAppId: ''
