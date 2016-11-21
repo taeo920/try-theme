@@ -21,7 +21,7 @@ function init() {
 	    $('.owl-prev', element).toggleClass('disabled', current === carousel.minimum());
 	});
 
-	$carousel_standard.owlCarousel({
+	$carousel.owlCarousel({
 		items: 1,
 		nav: true,
 		navText: ['<', '>'], // use icon font to display arrows
